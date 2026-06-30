@@ -1,0 +1,65 @@
+[
+  {
+    "canonical": "서울",
+    "code": "NAT010000",
+    "aliases": {
+      "en": ["Seoul", "Seoul Station"],
+      "ja": ["ソウル", "ソウル駅"],
+      "zh": ["首尔", "首尔站"]
+    },
+    "note": "Separate from Suseo (SRT)"
+  },
+  {
+    "canonical": "수서",
+    "code": "NAT014445",
+    "aliases": {
+      "en": ["Suseo", "Suseo Station"],
+      "ja": ["水西", "水西駅"],
+      "zh": ["水西", "水西站"]
+    },
+    "note": "SRT and KTX"
+  },
+  {
+    "canonical": "부산",
+    "code": "NAT010058",
+      "ja": ["釜山", "釜山駅"],
+      "zh": ["釜山", "釜山站"]
+    }
+  },
+  {
+    "canonical": "동대구",
+    "code": "NAT013271",
+    "aliases": {
+      "en": ["Dongdaegu", "Dongdaegu Station"],
+      "ja": ["東大邱", "東大邱駅"],
+      "zh": ["东大邱", "东大邱站"]
+    }
+  },
+  {
+    "canonical": "대전",
+    "code": "NAT011668",
+    "aliases": {
+      "en": ["Daejeon", "Daejeon Station"],
+      "ja": ["大田", "大田駅"],
+      "zh": ["大田", "大田站"]
+    }
+  },
+  {
+    "canonical": "광주송정",
+    "code": "NAT031857",
+    "aliases": {
+      "en": ["Gwangju Songjeong"],
+      "ja": ["光州松汀"],
+      "zh": ["光州松汀"]
+    }
+  },
+  {
+    "canonical": "오송",
+    "code": "NAT050366",
+    "aliases": {
+      "en": ["Osong"],
+      "ja": ["五松"],
+      "zh": ["五松"]
+    }
+  }
+]
