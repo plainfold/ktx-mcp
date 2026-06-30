@@ -32,13 +32,13 @@ W9-12  Phase 5  v1.0 + GTM
 |----|------|-----------|
 | 1.0 | **`TimetableStore`** (DB) + **sync_worker** → TAGO | Reads never hit TAGO |
 | 1.1 | Redis hot layer on DB | Sub-ms hot routes |
-| 1.2 | **`search_trains`** via gateway (1 TAGO per route/date) | Seoul→Busan |
-| 1.3 | **`compare_ktx_srt`** single TAGO fetch | KTX/SRT split in memory |
-| 1.4 | Request-scoped dedup + `tago_calls_today` metric | Dashboard / logs |
+| 1.2 | `search_stations` static-only | EN/JA/ZH resolve |
+| 1.3 | `search_trains` / `compare_ktx_srt` read DB only | Seoul→Busan |
+| 1.4 | `tago_calls_today` on sync worker + metrics | Dashboard / logs |
 | 1.5 | **Streamable HTTP** hosted server | Client needs **no key** |
-| 1.6 | Stale-while-revalidate at 80% daily budget | Spec in TRAFFIC.md |
+| 1.6 | On-demand sync for long-tail routes (capped) | TRAFFIC.md |
 
-**Exit criteria:** 100 simulated users × 6 MCP calls → **< 2,000 TAGO calls/day** (cache on).
+**Exit criteria:** 100 simulated users × 6 MCP calls → **0 TAGO on request path**; sync < 4,000 TAGO/day.
 
 ## Phase 2 — Full MCP surface (2 weeks)
 
