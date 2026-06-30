@@ -11,6 +11,8 @@ Supports natural-language queries in **English, Korean, Japanese, and Chinese**.
 
 Early scaffold — see [docs/KTX_MCP_SPEC.md](docs/KTX_MCP_SPEC.md) for the full product spec.
 
+**Repository:** [github.com/plainfold/ktx-mcp](https://github.com/plainfold/ktx-mcp)
+
 ## Quick start (local)
 
 1. Apply for a [data.go.kr](https://www.data.go.kr) API key (TAGO train info, ID `15098552`).

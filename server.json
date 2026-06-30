@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
-  "name": "io.github.USER/ktx-mcp",
+  "name": "io.github.plainfold/ktx-mcp",
   "description": "Korea KTX/SRT train schedules via TAGO public data. Multilingual: en, ko, ja, zh.",
   "version": "0.1.0",
   "packages": [

@@ -942,8 +942,8 @@ W10-12 Phase 5    v1.0
 |------|-----|
 | **워크스페이스** | `projectC` |
 | **PyPI 패키지** | `ktx-mcp` (`uvx ktx-mcp`) |
-| **GitHub 권장명** | `ktx-mcp` (기존 `projectC` remote가 있으면 rename 또는 새 remote) |
-| **MCP server id** | `io.github.{user}/ktx-mcp` |
+| **GitHub** | [plainfold/ktx-mcp](https://github.com/plainfold/ktx-mcp) |
+| **MCP server id** | `io.github.plainfold/ktx-mcp` |
 
 §8.4 디렉터리 트리 참조.
 
