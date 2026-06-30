@@ -4,8 +4,9 @@
 
 | Document | Description |
 |----------|-------------|
-| [TRAFFIC.md](./TRAFFIC.md) | **P0** — keyless hosted + TAGO 10k/day cache |
-| [SETUP.md](./SETUP.md) | Hosted (no key) + optional BYOK |
+| [DEPLOY.md](./DEPLOY.md) | **Fly.io + Supabase** deploy guide |
+| [SETUP.md](./SETUP.md) | Local BYOK (developers) |
+| [TRAFFIC.md](./TRAFFIC.md) | **P0** — TAGO 10k/day + DB materialization |
 | [TOOLS.md](./TOOLS.md) | MCP tool reference (v1.0) |
 | [LEGAL.md](./LEGAL.md) | Data license, attribution, disclaimers |
 | [ROADMAP.md](./ROADMAP.md) | 12-week implementation plan |

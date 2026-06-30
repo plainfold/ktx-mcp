@@ -8,10 +8,12 @@
 12-week plan from [KTX_MCP_SPEC.md](./KTX_MCP_SPEC.md).  
 **Current phase:** Phase 0 done → **Phase 1 = hosted + cache**.
 
+**Infrastructure:** Fly.io (`nrt`) + Supabase — see [DEPLOY.md](./DEPLOY.md).
+
 ## Timeline (reordered)
 
 ```
-W1-2   Phase 1  TagoGateway + cache + hosted HTTP (keyless)
+W1-2   Phase 1  Supabase schema + Fly deploy + sync worker
 W3-4   Phase 2  Full tools (stations, trains, compare, plan_trip)
 W5-6   Phase 3  Pre-warm + ops key + Registry / Smithery
 W7-8   Phase 4  Plus billing + traffic dashboard
@@ -30,8 +32,9 @@ W9-12  Phase 5  v1.0 + GTM
 
 | ID | Task | Done when |
 |----|------|-----------|
-| 1.0 | **`TimetableStore`** (DB) + **sync_worker** → TAGO | Reads never hit TAGO |
-| 1.1 | Redis hot layer on DB | Sub-ms hot routes |
+| 1.0 | Supabase migration + `TimetableStore` | `train_departures` live |
+| 1.1 | Fly deploy (`fly.toml`, `Dockerfile`) | `/health` 200 |
+| 1.2 | `/internal/sync` + pg_cron on Supabase | TAGO → DB |
 | 1.2 | `search_stations` static-only | EN/JA/ZH resolve |
 | 1.3 | `search_trains` / `compare_ktx_srt` read DB only | Seoul→Busan |
 | 1.4 | `tago_calls_today` on sync worker + metrics | Dashboard / logs |

@@ -9,8 +9,8 @@ Data: [TAGO train API](https://www.data.go.kr/data/15098552/openapi.do) (public 
 
 ## Status
 
-**Phase 1 (P0):** keyless hosted MCP + TAGO 10k/day cache strategy.  
-See [docs/TRAFFIC.md](docs/TRAFFIC.md).
+**Phase 1 (P0):** Fly.io + Supabase hosted stack.  
+See [docs/DEPLOY.md](docs/DEPLOY.md) · [docs/TRAFFIC.md](docs/TRAFFIC.md).
 
 **Repository:** [github.com/plainfold/ktx-mcp](https://github.com/plainfold/ktx-mcp)
 
@@ -22,13 +22,13 @@ No data.go.kr signup. Connect in Cursor / ChatGPT:
 {
   "mcpServers": {
     "ktx-mcp": {
-      "url": "https://mcp.example.com/mcp"
+      "url": "https://ktx-mcp.fly.dev/mcp"
     }
   }
 }
 ```
 
-> Hosted URL coming in Phase 1. Track [ROADMAP.md](docs/ROADMAP.md).
+> Replace with your Fly app URL after `fly deploy`. See [DEPLOY.md](docs/DEPLOY.md).
 
 ## Quick start (developers — BYOK)
 
@@ -39,7 +39,7 @@ Optional self-host with your own TAGO key: [docs/SETUP.md](docs/SETUP.md).
 | Doc | Description |
 |-----|-------------|
 | [docs/TRAFFIC.md](docs/TRAFFIC.md) | **P0** — cache & 10k/day strategy |
-| [docs/SETUP.md](docs/SETUP.md) | Hosted + BYOK setup |
+| [docs/DEPLOY.md](docs/DEPLOY.md) | Fly.io + Supabase deploy |
 | [docs/TOOLS.md](docs/TOOLS.md) | MCP tool reference |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | Implementation plan |
 | [docs/README.md](docs/README.md) | Full index |

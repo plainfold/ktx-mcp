@@ -2,12 +2,10 @@
 
 ## [Unreleased]
 
-### Changed
+### Added
 
-- **P0 strategy:** keyless hosted MCP as default; BYOK for developers only
-- Roadmap reordered: Phase 1 = `TagoGateway` + cache + hosted HTTP
-- [TRAFFIC.md](docs/TRAFFIC.md) — TAGO 10k/day optimization (cache, dedup, pre-warm)
-- SETUP, SPEC v1.3, ARCHITECTURE, PRICING aligned with traffic strategy
+- **Fly.io + Supabase** official stack: `fly.toml`, `Dockerfile`, `supabase/migrations/`
+- [DEPLOY.md](docs/DEPLOY.md) — deploy checklist for existing Fly + Supabase accounts
 
 ## [0.1.0] - 2026-06-30
 
