@@ -55,12 +55,11 @@
 
 ---
 
-## 5. 법·컴플라이언스 (Legal)
+## 5. 법·데이터 (Legal)
 
 | 문서 | 설명 |
 |------|------|
-| [compliance.md](legal/compliance.md) | TAGO 라이선스, 출처, 면책 |
-| [evidence.md](legal/evidence.md) | 이용허락 스크린샷 보관 |
+| [compliance.md](legal/compliance.md) | TAGO 출처, 면책, 증빙 |
 
 ---
 

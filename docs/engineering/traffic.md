@@ -93,21 +93,7 @@ User MCP traffic: **unlimited** (reads DB/Redis only).
 
 Long-tail: queue `sync_route(dep, arr, date)` — if not in DB and daily sync budget remains, fetch once and persist; else return `NO_TRAINS` + “sync scheduled”.
 
-### Legal (TAGO 제0유형)
-
-| Allowed | Notes |
-|---------|-------|
-| Store transformed timetable rows | Service-internal DB, not “raw JSON resale” |
-| Commercial hosted MCP | [compliance.md](../legal/compliance.md) |
-| Periodic refresh | Document `fetched_at` in responses |
-
-| Still required | |
-|----------------|--|
-| Attribution in `data_source` / README | |
-| Disclaimer — schedules may change | show `as_of` = `fetched_at` |
-| Do not publish full DB dump as separate product | |
-
-**Not legal advice** — keep use-case registration aligned with “timetable lookup MCP”.
+DB 동기화·호스팅: [compliance.md](../legal/compliance.md). 응답에 `fetched_at`·출처·면책 포함.
 
 ### Tradeoffs
 
