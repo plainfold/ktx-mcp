@@ -12,8 +12,123 @@
 **Goal:** maximize MCP tool calls, **minimize** TAGO upstream calls.
 
 ```
-Many MCP calls  ──►  few TAGO calls  (cache + dedup + static data)
+Many MCP calls  ──►  read DB/Redis  ──►  TAGO only in background sync jobs
 ```
+
+---
+
+## Recommended: materialize timetables in DB + Redis
+
+**Yes — this is feasible and preferred** over request-time TAGO + short TTL cache.
+
+| Path | TAGO on user request | 10k/day feels like |
+|------|----------------------|-------------------|
+| Request-time API + Redis TTL | 0–1 per miss | Tight |
+| **Sync → DB → Redis (read path)** | **0** | **Unlimited MCP reads** |
+
+### Architecture
+
+```mermaid
+flowchart LR
+    subgraph sync [Background sync only]
+        Cron[Cron / worker]
+        TAGO[TAGO API]
+        Cron --> TAGO
+        TAGO --> Cron
+    end
+
+    subgraph store [Storage]
+        DB[(PostgreSQL / SQLite)]
+        Redis[(Redis hot layer)]
+        Cron --> DB
+        DB --> Redis
+    end
+
+    subgraph read [User request path]
+        MCP[MCP tools]
+        MCP --> Redis
+        Redis -->|miss| DB
+        MCP -.->|never| TAGO
+    end
+```
+
+| Layer | Role |
+|-------|------|
+| **PostgreSQL** (or SQLite MVP) | Canonical store — `(dep, arr, date)` → train rows, `fetched_at`, `source=tago` |
+| **Redis** | Hot read — same key as today, sub-ms; optional write-through from sync |
+| **Sync worker** | Only component that calls TAGO — fixed schedule, fixed budget |
+
+### Example schema
+
+```sql
+-- routes pre-defined or discovered on first sync
+CREATE TABLE train_departures (
+  dep_code    TEXT NOT NULL,
+  arr_code    TEXT NOT NULL,
+  travel_date TEXT NOT NULL,  -- YYYYMMDD
+  dep_time    TEXT NOT NULL,  -- HH:MM
+  arr_time    TEXT NOT NULL,
+  train_type  TEXT NOT NULL,  -- KTX, SRT, ITX, ...
+  train_no    TEXT,
+  duration_min INT,
+  fetched_at  TIMESTAMPTZ NOT NULL,
+  PRIMARY KEY (dep_code, arr_code, travel_date, dep_time, train_type, train_no)
+);
+CREATE INDEX idx_route_date ON train_departures (dep_code, arr_code, travel_date);
+```
+
+`compare_ktx_srt` = `SELECT ... WHERE train_type IN ('KTX','SRT')` — **zero extra TAGO**.
+
+### Sync budget (fits in 10k/day easily)
+
+| Job | Frequency | TAGO calls / run | / day |
+|-----|-----------|------------------|-------|
+| Top **30 routes** × **today + tomorrow** | every **30 min** | 60 | **2,880** |
+| Top 30 × **day+2 … day+7** | every **6 h** | 180 | **720** |
+| Long-tail route (on-demand) | first user query | 1 | variable cap 500 |
+| Station manifest | daily | 1 | 1 |
+| **Total (steady)** | | | **~3,600** |
+
+User MCP traffic: **unlimited** (reads DB/Redis only).
+
+Long-tail: queue `sync_route(dep, arr, date)` — if not in DB and daily sync budget remains, fetch once and persist; else return `NO_TRAINS` + “sync scheduled”.
+
+### Legal (TAGO 제0유형)
+
+| Allowed | Notes |
+|---------|-------|
+| Store transformed timetable rows | Service-internal DB, not “raw JSON resale” |
+| Commercial hosted MCP | [LEGAL.md](./LEGAL.md) |
+| Periodic refresh | Document `fetched_at` in responses |
+
+| Still required | |
+|----------------|--|
+| Attribution in `data_source` / README | |
+| Disclaimer — schedules may change | show `as_of` = `fetched_at` |
+| Do not publish full DB dump as separate product | |
+
+**Not legal advice** — keep use-case registration aligned with “timetable lookup MCP”.
+
+### Tradeoffs
+
+| Pro | Con |
+|-----|-----|
+| TAGO decoupled from user spikes | Staleness up to sync interval (30 min OK for timetables) |
+| Predictable cost | Must maintain sync worker + DB |
+| `compare` / `plan_trip` free | Long-tail routes need on-demand sync or wider pre-sync list |
+| Survives Redis flush | DB is source of truth |
+
+**MVP:** SQLite + in-process sync (no Redis yet) → add Redis + Postgres when hosting multi-instance.
+
+### Implementation order (revised P0)
+
+1. `train_departures` table + `TimetableStore` read API  
+2. `sync_worker` — top 30 routes, today+tomorrow every 30 min  
+3. MCP tools read **only** `TimetableStore` (TagoGateway = sync-only)  
+4. Redis in front of DB for hot routes  
+5. On-demand sync for cache miss (capped)
+
+Layers L2–L6 below remain useful as **fallback** until DB is warm, and for on-demand backfill.
 
 ---
 
@@ -155,13 +270,13 @@ Pre-warm 40 + station sync 1 ≈ **41 TAGO/day** fixed overhead.
 
 ## Checklist (P0 before public hosted launch)
 
-- [ ] `TagoGateway` with Redis cache
+- [ ] `train_departures` DB + `TimetableStore` read path
+- [ ] `sync_worker` (TAGO → DB), top 30 routes / 30 min
+- [ ] MCP tools — **no TAGO on request path**
+- [ ] Redis hot layer on top of DB
 - [ ] `search_stations` — static only at runtime
-- [ ] `compare_ktx_srt` — single fetch
-- [ ] Request-scoped dedup in `plan_trip`
-- [ ] `tago_calls_today` counter + 80% alert
-- [ ] Stale-while-revalidate when > 80% budget
-- [ ] Hosted MCP — **no** `DATA_GO_KR_SERVICE_KEY` in client config
+- [ ] `tago_calls_today` on **sync worker only** + 80% alert
+- [ ] Hosted MCP — **no** client API key
 - [ ] Production key + use case submitted
 
 See [ROADMAP.md](./ROADMAP.md) for phased delivery.

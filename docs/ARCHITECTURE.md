@@ -26,12 +26,13 @@ MCP Client (no API key)
         ├── tools/*  (6–7 MCP calls per user question)
         │
         ▼
-   TagoGateway  ◄── P0: all TAGO traffic here
+   TimetableStore  ◄── P0: read path (no TAGO)
         │
-        ├── request-scoped cache
-        ├── Redis TTL cache
-        ├── singleflight dedup
-        └── TAGO API (≤1 call per route/date on miss)
+        ├── Redis (hot)
+        └── PostgreSQL / SQLite (canonical)
+
+Background (sync worker only):
+   Cron → TagoAdapter → DB → Redis
 ```
 
 ## Zero-TAGO tools (runtime)

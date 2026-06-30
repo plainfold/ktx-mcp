@@ -30,8 +30,8 @@ W9-12  Phase 5  v1.0 + GTM
 
 | ID | Task | Done when |
 |----|------|-----------|
-| 1.0 | **`TagoGateway`** + Redis/in-memory cache | Unit tests for hit/miss |
-| 1.1 | **`search_stations`** static-only (no per-user TAGO) | EN/JA/ZH resolve |
+| 1.0 | **`TimetableStore`** (DB) + **sync_worker** → TAGO | Reads never hit TAGO |
+| 1.1 | Redis hot layer on DB | Sub-ms hot routes |
 | 1.2 | **`search_trains`** via gateway (1 TAGO per route/date) | Seoul→Busan |
 | 1.3 | **`compare_ktx_srt`** single TAGO fetch | KTX/SRT split in memory |
 | 1.4 | Request-scoped dedup + `tago_calls_today` metric | Dashboard / logs |
