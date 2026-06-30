@@ -4,7 +4,8 @@
 
 | Document | Description |
 |----------|-------------|
-| [SETUP.md](./SETUP.md) | Install, API key, Cursor / Claude config |
+| [TRAFFIC.md](./TRAFFIC.md) | **P0** — keyless hosted + TAGO 10k/day cache |
+| [SETUP.md](./SETUP.md) | Hosted (no key) + optional BYOK |
 | [TOOLS.md](./TOOLS.md) | MCP tool reference (v1.0) |
 | [LEGAL.md](./LEGAL.md) | Data license, attribution, disclaimers |
 | [ROADMAP.md](./ROADMAP.md) | 12-week implementation plan |

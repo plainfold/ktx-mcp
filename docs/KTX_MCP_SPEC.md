@@ -1,9 +1,10 @@
 # ktx-mcp — 제품 SPEC & 상업 로드맵 (TAGO-only)
 
-**문서 버전:** 1.2  
+**문서 버전:** 1.3  
 **작성일:** 2026-06-30  
-**상태:** v8 5단계 확정 — **ktx-mcp (TAGO-only, 한국+글로벌 다국어, 저가·호출량)**  
-**상업 전략:** **저가 진입 + 호출량 극대화** (가격보다 MAPI 월간 도구 호출 수)  
+**상태:** v8 확정 — **키 없는 호스팅 + TAGO 10k/일 캐시 최우선**  
+**상업 전략:** **저가 진입 + MCP 호출량** (TAGO upstream은 캐시로 절약)  
+**P0 문서:** [TRAFFIC.md](./TRAFFIC.md)
 **프로젝트 가칭:** `ktx-mcp` / 패키지명 `ktx-mcp`  
 **관련 조사:** [DEMAND_RESEARCH.md](./DEMAND_RESEARCH.md)
 
@@ -51,17 +52,29 @@
 | **상업 가능** | TAGO 제0유형 + 공공데이터법 영리 허용 |
 | **제약 적합** | 무료 호스팅(넉넉한 호출) → **저가($2~3/월)** ·종량 |
 
-### 1.3 상업 전략 한 줄
+### 1.3 상업·기술 전략 (P0)
+
+| 우선순위 | 전략 |
+|----------|------|
+| **1** | **키 없는 호스팅** — 외국인·일반 사용자는 data.go.kr 가입 없이 URL만 연결 |
+| **2** | **TAGO 10k/일 생존** — `TagoGateway` + 캐시 + dedup ([TRAFFIC.md](./TRAFFIC.md)) |
+| **3** | **MCP 호출량 monetize** — Skill 6~7 tool chain, Plus $3/월 |
+| **4** | **운영키 증설** — 활용사례 등록 후 트래픽 신청 (10k → 100k+) |
+
+> **두 개의 카운터:** MCP tool call (과금·Skill) ≠ TAGO upstream HTTP (인프라 한도).
+
+### 1.4 상업 전략 한 줄
 
 > **가격은 최저로, 호출 수는 최대로.**  
 > 한 번의 사용자 질문이 **4~7회 MCP 도구 호출**이 되도록 설계하고,  
 > 무료 호스팅으로 유입 → 호출 한도·부가 도구에서 **저가($2~5/월)** 로 전환한다.
 
-### 1.4 성공 기준 (호출량 우선)
+### 1.5 성공 기준 (호출량 우선)
 
 | 단계 | 기준 | 가격 목표 |
 |------|------|-----------|
-| **MVP** | Cursor에서 서울→부산 1턴 답변 (**내부 4+ tool calls**) | $0 |
+| **P0 트래픽** | `tago_calls / mcp_calls` **< 0.2** (캐시 적용 후) | — |
+| **MVP** | **키 없이** 호스팅 URL → 서울→부산 1턴 | $0 |
 | **$1+** | Gumroad Skill **$2** 1건 또는 Ko-fi $1 | 최저가 |
 | **유입** | 호스팅 Free **월 5,000 tool calls** | $0 |
 | **MRR** | Plus **$3/월** 전환 10명 (호출 80% 소진 유저) | 저가 |
@@ -608,22 +621,54 @@ projectC/                          # Git root (GitHub: ktx-mcp 권장)
 
 ## 9. 캐시·트래픽·운영
 
+> **상세:** [TRAFFIC.md](./TRAFFIC.md) — P0 최우선. 키 없는 호스팅 + 일 10,000 TAGO 한도 대응.
+
+### 9.0 원칙
+
+| 원칙 | 내용 |
+|------|------|
+| **키는 서버만** | 클라이언트에 `DATA_GO_KR_SERVICE_KEY` 노출 금지 (호스팅) |
+| **TAGO는 Gateway 경유** | `search_trains`·`compare_ktx_srt`·`plan_trip` 직접 HTTP 금지 |
+| **역 검색 = 정적** | 런타임 `search_stations` → TAGO 호출 0 |
+| **compare = 1 fetch** | 동일 `(출발,도착,일)` 2회 TAGO 금지 |
+
 ### 9.1 캐시 정책
 
 | 키 | TTL | 이유 |
 |----|-----|------|
-| `stations:*` | 24h | 역 목록 거의 불변 |
-| `trains:{dep}:{arr}:{date}` | 10min | 시각표 갱신·트래픽 절약 |
+| `stations:manifest` | 24h | 백그라운드 1회/일 동기화 |
+| `trains:{dep}:{arr}:{date}` | **15min** (인기 30min) | 시각표 + 트래픽 절약 |
 | `holiday:{year}` | 7d | 공휴일 연간 |
+| stale SWR | 60min | TAGO 일한도 80% 초과 시 |
 
-호스팅 시 **Redis** (Phase 3); 로컬은 in-memory.
+호스팅: **Redis** 필수. 로컬: in-memory.
+
+### 9.1.1 TagoGateway (구현 필수)
+
+```text
+MCP tools → TagoGateway.get_trains(dep, arr, date)
+              ├─ request-scoped cache (same turn)
+              ├─ Redis TTL cache
+              ├─ in-flight singleflight
+              └─ TAGO HTTP (only on miss)
+```
 
 ### 9.2 트래픽 계획
 
 | 단계 | 계정 | 한도 | 용도 |
 |------|------|------|------|
-| 개발 | data.go.kr 개발키 | 10,000/일 | POC·CI |
-| 운영 | 운영키 + 활용사례 | 증설 | 호스팅 MCP |
+| 개발 | data.go.kr 개발키 | **10,000/일** | POC — **캐시 없으면 ~3k 질문/일** |
+| 운영 | 운영키 + 활용사례 | **증설 신청** | 호스팅 정식 오픈 전 필수 |
+
+**Pre-warm:** 상위 20구간 × (오늘+내일) ≈ **40 TAGO/일** 고정비.
+
+### 9.2.1 모니터링
+
+| 지표 | 알림 |
+|------|------|
+| `tago_calls_today` | > 8,000 (80%) |
+| `cache_hit_rate` | < 70% |
+| `tago_per_mcp_call` | > 0.5 (1h rolling) |
 
 **활용사례 등록 시 기재 예시:**
 
@@ -644,15 +689,27 @@ projectC/                          # Git root (GitHub: ktx-mcp 권장)
 
 ## 10. 배포 형태 (L1 MCP + L2 Skill)
 
-### 10.1 L1 MCP
+### 10.1 L1 MCP — **호스팅(기본) vs 로컬(BYOK)**
 
-| 채널 | 명령 |
-|------|------|
-| **로컬 stdio** | `uvx ktx-mcp` |
-| **개발** | `uv run ktx-mcp` |
-| **호스팅** | Remote URL in Cursor / ChatGPT Connectors |
+| 채널 | 사용자 키 | 명령 / URL |
+|------|-----------|------------|
+| **호스팅 (기본)** | **불필요** | `https://mcp.{domain}/mcp` Streamable HTTP |
+| 로컬 stdio (개발) | 자기 TAGO 키 | `uvx ktx-mcp` |
+| 개발 | 서버 키 | `uv run ktx-mcp` |
 
-**mcp.json 예시 (로컬 BYOK):**
+**mcp.json 예시 (호스팅 — 권장, 외국인·일반 사용자):**
+
+```json
+{
+  "mcpServers": {
+    "ktx-mcp": {
+      "url": "https://mcp.example.com/mcp"
+    }
+  }
+}
+```
+
+**mcp.json 예시 (로컬 BYOK — 개발자만):**
 
 ```json
 {

@@ -2,12 +2,12 @@
 
 ## [Unreleased]
 
-### Added
+### Changed
 
-- Documentation set: SETUP, TOOLS, LEGAL, ROADMAP, PRICING, ARCHITECTURE, CONTRIBUTING
-- Demo queries (en / ko / ja / zh) in `docs/prompts/`
-- L2 skill `ktx-trip-research` with 7-step SOP
-- Legal archive guide under `docs/legal/`
+- **P0 strategy:** keyless hosted MCP as default; BYOK for developers only
+- Roadmap reordered: Phase 1 = `TagoGateway` + cache + hosted HTTP
+- [TRAFFIC.md](docs/TRAFFIC.md) — TAGO 10k/day optimization (cache, dedup, pre-warm)
+- SETUP, SPEC v1.3, ARCHITECTURE, PRICING aligned with traffic strategy
 
 ## [0.1.0] - 2026-06-30
 

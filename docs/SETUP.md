@@ -1,29 +1,54 @@
 # Setup Guide
 
-## Prerequisites
+## Recommended: keyless hosted (no API key)
+
+For **travelers, ChatGPT, and Cursor users** — no [data.go.kr](https://www.data.go.kr) account required.
+
+```json
+{
+  "mcpServers": {
+    "ktx-mcp": {
+      "url": "https://mcp.example.com/mcp",
+      "headers": {}
+    }
+  }
+}
+```
+
+> **Hosted URL:** not live yet — see [ROADMAP.md](./ROADMAP.md).  
+> Server holds the TAGO key; you only connect to the MCP endpoint.
+
+**Why hosted first:** foreign users cannot easily register on the Korean public data portal. See [TRAFFIC.md](./TRAFFIC.md).
+
+---
+
+## Optional: self-host (developers / BYOK)
+
+For local development or running your own instance with **your** TAGO key.
+
+### Prerequisites
 
 - Python **3.11+**
-- [data.go.kr](https://www.data.go.kr) account
-- TAGO **train info** API key ([portal ID `15098552`](https://www.data.go.kr/data/15098552/openapi.do))
+- [data.go.kr](https://www.data.go.kr) account (Korea residents / developers)
+- TAGO train API key ([portal ID `15098552`](https://www.data.go.kr/data/15098552/openapi.do))
 
-## 1. Get a TAGO API key
+### 1. Get a TAGO API key (BYOK only)
 
-1. Sign up at [data.go.kr](https://www.data.go.kr).
-2. Open [국토교통부 TAGO 열차정보](https://www.data.go.kr/data/15098552/openapi.do).
+1. Sign up at [data.go.kr](https://www.data.go.kr) (English: [/en/](https://www.data.go.kr/en/index.do)).
+2. Open [TAGO 열차정보](https://www.data.go.kr/data/15098552/openapi.do).
 3. Click **활용신청** (apply for use).
 4. Copy the **일반 인증키 (Decoding)** service key.
 
-**License:** 이용허락범위 **제한 없음** (type 0). Commercial use is allowed.  
-See [LEGAL.md](./LEGAL.md) and [TAGO policy](https://www.tago.go.kr/v5/notice/publicData.jsp).
+**Traffic limits (your key):**
 
-**Traffic limits:**
+| Account | Daily TAGO limit |
+|---------|------------------|
+| Development | 10,000 |
+| Production | Apply after use-case registration |
 
-| Account | Daily limit |
-|---------|-------------|
-| Development | 10,000 calls |
-| Production | Apply after registering a use case |
+Hosted production uses **server-side** caching to stretch 10k/day — see [TRAFFIC.md](./TRAFFIC.md).
 
-## 2. Install locally
+### 2. Install
 
 ```bash
 git clone https://github.com/plainfold/ktx-mcp.git
@@ -31,56 +56,34 @@ cd ktx-mcp
 pip install -e ".[dev]"
 ```
 
-Or without cloning:
-
-```bash
-pip install ktx-mcp   # after PyPI publish
-```
-
-## 3. Configure environment
-
-Copy the example file:
+### 3. Configure environment
 
 ```bash
 cp .env.example .env
-```
-
-Set your key:
-
-```bash
-# Windows PowerShell
-$env:DATA_GO_KR_SERVICE_KEY = "your-decoding-key"
-
-# macOS / Linux
-export DATA_GO_KR_SERVICE_KEY="your-decoding-key"
+# Set DATA_GO_KR_SERVICE_KEY in .env (server-side only — never commit)
 ```
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `DATA_GO_KR_SERVICE_KEY` | Yes (local BYOK) | — | data.go.kr service key |
+| `DATA_GO_KR_SERVICE_KEY` | BYOK / server | — | TAGO key (**server only** for hosted) |
 | `KTX_MCP_TRANSPORT` | No | `stdio` | `stdio` or `http` |
-| `KTX_MCP_DEFAULT_LOCALE` | No | `en` | Response language for `summary` |
-| `KTX_MCP_CACHE_TTL` | No | `600` | Cache TTL in seconds |
+| `KTX_MCP_DEFAULT_LOCALE` | No | `en` | Response language |
+| `KTX_MCP_CACHE_TTL` | No | `900` | Train cache TTL (seconds) |
+| `REDIS_URL` | Hosted | — | Shared cache (required for multi-user) |
 
-## 4. Smoke test TAGO
+### 4. Smoke test TAGO
 
 ```bash
 python scripts/smoke_tago.py
 ```
 
-Expect HTTP 200 and JSON from TAGO. If you see auth errors, verify the decoding key.
-
-## 5. Run the MCP server
+### 5. Run locally
 
 ```bash
 ktx-mcp
-# or
-uv run ktx-mcp
 ```
 
-## 6. Cursor configuration
-
-Add to `.cursor/mcp.json` or Cursor Settings → MCP:
+### 6. Cursor (local BYOK)
 
 ```json
 {
@@ -96,59 +99,19 @@ Add to `.cursor/mcp.json` or Cursor Settings → MCP:
 }
 ```
 
-For local development:
-
-```json
-{
-  "mcpServers": {
-    "ktx-mcp": {
-      "command": "python",
-      "args": ["-m", "ktx_mcp.server"],
-      "cwd": "C:\\path\\to\\ktx-mcp",
-      "env": {
-        "DATA_GO_KR_SERVICE_KEY": "YOUR_KEY"
-      }
-    }
-  }
-}
-```
-
-## 7. Claude Desktop
-
-Edit `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "ktx-mcp": {
-      "command": "uvx",
-      "args": ["ktx-mcp"],
-      "env": {
-        "DATA_GO_KR_SERVICE_KEY": "YOUR_KEY"
-      }
-    }
-  }
-}
-```
-
-## 8. Run tests
+### 7. Tests
 
 ```bash
 pytest
-```
-
-Live TAGO tests (optional):
-
-```bash
-DATA_GO_KR_SERVICE_KEY=... pytest -m live
 ```
 
 ---
 
 ## 한국어 요약
 
-1. [공공데이터포털](https://www.data.go.kr/data/15098552/openapi.do)에서 TAGO 열차정보 API 키 발급  
-2. `pip install -e ".[dev]"`  
-3. `DATA_GO_KR_SERVICE_KEY` 환경 변수 설정  
-4. Cursor `mcp.json`에 서버 등록  
-5. 데모 질문: *「내일 서울에서 부산 KTX 몇 시 있어?」*
+| 대상 | 방법 |
+|------|------|
+| **일반 사용자·외국인** | 호스팅 URL 연결 — **키 불필요** (준비 중) |
+| **개발자** | 자가 호스팅 + `DATA_GO_KR_SERVICE_KEY` |
+
+서버는 TAGO 일 **1만 건/일** 한도를 [캐시 전략](./TRAFFIC.md)으로 늘려 씁니다.

@@ -1,17 +1,30 @@
 # Pricing
 
-Low entry price, revenue from **tool call volume**.
+Low entry price. Revenue from **MCP tool call volume** — not from TAGO upstream (server absorbs TAGO via cache).
+
+## Default: keyless hosted
+
+Users connect to a hosted URL. **No data.go.kr account or API key.**
+
+See [TRAFFIC.md](./TRAFFIC.md) for how the server stretches the shared TAGO 10k/day budget.
 
 ## Tiers
 
 | Tier | Price | Daily tool calls | Notes |
 |------|-------|------------------|-------|
-| **OSS (BYOK)** | Free | Unlimited* | User supplies `DATA_GO_KR_SERVICE_KEY` |
+| **OSS (BYOK)** | Free | Unlimited* | Self-host only — **developers** |
 | **Hosting Free** | Free | 500 | All 7 tools included |
 | **Hosting Plus** | **$3/month** | 5,000 | Email support |
 | **Overage** | **$0.50 / 1,000 calls** | — | Plus subscribers only |
 
-\* Subject to TAGO daily quota on the user's own key (10,000/day dev tier).
+## Two meters
+
+| Meter | Free tier | Plus | Who pays TAGO |
+|-------|-----------|------|---------------|
+| **MCP tool calls** | 500/day | 5,000/day | — (our product limit) |
+| **TAGO upstream** | — | — | **Server** (one shared key + cache) |
+
+\* BYOK: user's own TAGO 10k/day — not the hosted pool.
 
 ## One-time products
 
