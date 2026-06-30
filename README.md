@@ -2,21 +2,24 @@
 
 **Ask in any language — get KTX/SRT schedules in one agent turn.**
 
-MCP server for Korea long-distance rail (KTX, SRT, ITX) timetables.  
-**No API key required** — connect to hosted MCP (TAGO key on server).
-
-Data: [TAGO train API](https://www.data.go.kr/data/15098552/openapi.do) (public data, commercial use allowed).
+MCP server for Korea long-distance rail (KTX, SRT, ITX).  
+**No API key required** — hosted on Fly.io, data on Supabase.
 
 ## Status
 
-**Phase 1 (P0):** Fly.io + Supabase hosted stack.  
-See [docs/DEPLOY.md](docs/DEPLOY.md) · [docs/TRAFFIC.md](docs/TRAFFIC.md).
+Phase 1 — Fly + Supabase stack. See [docs/README.md](docs/README.md) for all documentation.
 
-**Repository:** [github.com/plainfold/ktx-mcp](https://github.com/plainfold/ktx-mcp)
+## Documentation (5 categories)
 
-## Quick start (hosted — recommended)
+| Category | Start here |
+|----------|------------|
+| **Getting started** | [deploy](docs/getting-started/deploy.md) · [setup](docs/getting-started/setup.md) |
+| **Product** | [tools](docs/product/tools.md) · [pricing](docs/product/pricing.md) |
+| **Engineering** | [architecture](docs/engineering/architecture.md) · [traffic](docs/engineering/traffic.md) |
+| **Planning** | [roadmap](docs/planning/roadmap.md) · [spec](docs/planning/spec.md) |
+| **Legal** | [compliance](docs/legal/compliance.md) |
 
-No data.go.kr signup. Connect in Cursor / ChatGPT:
+## Quick start (hosted)
 
 ```json
 {
@@ -28,33 +31,15 @@ No data.go.kr signup. Connect in Cursor / ChatGPT:
 }
 ```
 
-> Replace with your Fly app URL after `fly deploy`. See [DEPLOY.md](docs/DEPLOY.md).
+See [deploy guide](docs/getting-started/deploy.md).
 
-## Quick start (developers — BYOK)
-
-Optional self-host with your own TAGO key: [docs/SETUP.md](docs/SETUP.md).
-
-## Documentation
-
-| Doc | Description |
-|-----|-------------|
-| [docs/TRAFFIC.md](docs/TRAFFIC.md) | **P0** — cache & 10k/day strategy |
-| [docs/DEPLOY.md](docs/DEPLOY.md) | Fly.io + Supabase deploy |
-| [docs/TOOLS.md](docs/TOOLS.md) | MCP tool reference |
-| [docs/ROADMAP.md](docs/ROADMAP.md) | Implementation plan |
-| [docs/README.md](docs/README.md) | Full index |
-
-## Demo queries
+## Demo
 
 - EN: *What's the earliest KTX from Seoul to Busan tomorrow?*
 - KO: *내일 서울에서 부산 가는 KTX 첫차·막차 알려줘*
-- JA: *明日ソウルから釜山の一番早いKTXは？*
-- ZH: *明天从首尔到釜山最早的高铁是几点？*
+
+More: [demo-queries](docs/product/demo-queries.md)
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
-
-## Disclaimer
-
-Timetable reference only. Not affiliated with Korail or SR. Book via official apps.
+MIT — [LICENSE](LICENSE)

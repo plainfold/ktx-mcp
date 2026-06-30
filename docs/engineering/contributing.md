@@ -4,8 +4,8 @@ Thanks for helping improve ktx-mcp.
 
 ## Before you start
 
-1. Read [LEGAL.md](./LEGAL.md) — we only use **TAGO** public data.
-2. Read [TOOLS.md](./TOOLS.md) for the tool contract.
+1. Read [compliance.md](../legal/compliance.md) — we only use **TAGO** public data.
+2. Read [tools.md](../product/tools.md) for the tool contract.
 3. Do not add Korail scraping, KRIC rail portal, or booking features.
 
 ## Development setup
@@ -30,8 +30,8 @@ pytest
 1. Fork → branch from `main`
 2. One focused change per PR
 3. Add tests for new behavior
-4. Update [TOOLS.md](./TOOLS.md) if MCP tools change
-5. Update [CHANGELOG.md](../CHANGELOG.md) under `Unreleased`
+4. Update [tools.md](../product/tools.md) if MCP tools change
+5. Update [CHANGELOG.md](../../CHANGELOG.md) under `Unreleased`
 
 ## Commit messages
 
@@ -52,4 +52,4 @@ Include:
 
 ## License
 
-By contributing, you agree your contributions are licensed under the [MIT License](../LICENSE).
+By contributing, you agree your contributions are licensed under the [MIT License](../../LICENSE).

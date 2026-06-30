@@ -1,7 +1,7 @@
 # Architecture
 
 High-level design for ktx-mcp.  
-**P0:** [TRAFFIC.md](./TRAFFIC.md) — keyless hosted + TAGO 10k/day via DB materialization.
+**P0:** [traffic.md](./traffic.md) — keyless hosted + TAGO 10k/day via DB materialization.
 
 ## Official hosted stack
 
@@ -12,7 +12,7 @@ High-level design for ktx-mcp.
 | **Scheduler** | Supabase `pg_cron` → `POST /internal/sync` on Fly | ✅ |
 | **Redis** | — | MVP skip (Postgres only) |
 
-Deploy guide: [DEPLOY.md](./DEPLOY.md)
+Deploy guide: [deploy.md](../getting-started/deploy.md)
 
 ## Stack (application)
 

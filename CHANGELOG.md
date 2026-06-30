@@ -2,10 +2,10 @@
 
 ## [Unreleased]
 
-### Added
+### Changed
 
-- **Fly.io + Supabase** official stack: `fly.toml`, `Dockerfile`, `supabase/migrations/`
-- [DEPLOY.md](docs/DEPLOY.md) — deploy checklist for existing Fly + Supabase accounts
+- **Docs reorganized** into 5 categories: `getting-started/`, `product/`, `engineering/`, `planning/`, `legal/`
+- [docs/README.md](docs/README.md) — single index
 
 ## [0.1.0] - 2026-06-30
 

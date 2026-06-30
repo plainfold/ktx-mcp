@@ -4,9 +4,9 @@
 **작성일:** 2026-06-30  
 **상태:** v8 확정 — **키 없는 호스팅 + TAGO 10k/일 캐시 최우선**  
 **상업 전략:** **저가 진입 + MCP 호출량** (TAGO upstream은 캐시로 절약)  
-**P0 문서:** [TRAFFIC.md](./TRAFFIC.md)
+**P0 문서:** [traffic.md](../engineering/traffic.md)
 **프로젝트 가칭:** `ktx-mcp` / 패키지명 `ktx-mcp`  
-**관련 조사:** [DEMAND_RESEARCH.md](./DEMAND_RESEARCH.md)
+**관련 조사:** [demand-research.md](./demand-research.md)
 
 ---
 
@@ -57,7 +57,7 @@
 | 우선순위 | 전략 |
 |----------|------|
 | **1** | **키 없는 호스팅** — 외국인·일반 사용자는 data.go.kr 가입 없이 URL만 연결 |
-| **2** | **TAGO 10k/일 생존** — `TagoGateway` + 캐시 + dedup ([TRAFFIC.md](./TRAFFIC.md)) |
+| **2** | **TAGO 10k/일 생존** — `TagoGateway` + 캐시 + dedup ([traffic.md](../engineering/traffic.md)) |
 | **3** | **MCP 호출량 monetize** — Skill 6~7 tool chain, Plus $3/월 |
 | **4** | **운영키 증설** — 활용사례 등록 후 트래픽 신청 (10k → 100k+) |
 
@@ -570,34 +570,24 @@ v1은 `TagoAdapter` 단일 구현. 레일포털 adapter **금지**.
 조사 문서와 구현을 **같은 Git 레포**에 둔다. PyPI 패키지명은 `ktx-mcp`.
 
 ```
-projectC/                          # Git root (GitHub: ktx-mcp 권장)
+projectC/                          # Git root (GitHub: plainfold/ktx-mcp)
 ├── docs/
-│   ├── KTX_MCP_SPEC.md            # 제품 SPEC (본 문서)
-│   ├── DEMAND_RESEARCH.md         # v8 니치 조사 (아카이브)
-│   └── legal/                     # TAGO 이용허락 스크린샷 등
+│   ├── README.md                  # 문서 인덱스 (5 카테고리)
+│   ├── getting-started/           # 배포, 로컬 설치
+│   ├── product/                   # 도구, 가격, 데모
+│   ├── engineering/               # 아키텍처, 트래픽, 기여
+│   ├── planning/                  # 로드맵, spec, 조사
+│   └── legal/                     # 컴플라이언스, 증빙
+├── supabase/migrations/
 ├── src/ktx_mcp/
 │   ├── __init__.py
-│   ├── server.py                  # FastMCP entry
+│   ├── server.py
 │   ├── adapters/
-│   │   ├── base.py
-│   │   └── tago.py
 │   ├── tools/
-│   │   ├── datetime_kst.py
-│   │   ├── stations.py
-│   │   ├── trains.py
-│   │   ├── compare.py
-│   │   ├── holiday.py
-│   │   ├── booking_links.py
-│   │   └── plan_trip.py
 │   ├── models/
-│   │   └── schemas.py
-│   ├── cache/
-│   │   └── ttl.py
-│   ├── i18n/
-│   │   └── summary.py
 │   └── data/
-│       ├── stations_i18n.json
-│       └── i18n/disclaimer.*.txt
+├── fly.toml
+├── Dockerfile
 ├── skills/
 │   └── ktx-trip-research/
 │       └── SKILL.md
@@ -621,7 +611,7 @@ projectC/                          # Git root (GitHub: ktx-mcp 권장)
 
 ## 9. 캐시·트래픽·운영
 
-> **상세:** [TRAFFIC.md](./TRAFFIC.md) — P0 최우선. 키 없는 호스팅 + 일 10,000 TAGO 한도 대응.
+> **상세:** [traffic.md](../engineering/traffic.md) — P0 최우선. 키 없는 호스팅 + 일 10,000 TAGO 한도 대응.
 
 ### 9.0 원칙
 

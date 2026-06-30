@@ -6,7 +6,7 @@ Low entry price. Revenue from **MCP tool call volume** — not from TAGO upstrea
 
 Users connect to a hosted URL. **No data.go.kr account or API key.**
 
-See [TRAFFIC.md](./TRAFFIC.md) for how the server stretches the shared TAGO 10k/day budget.
+See [traffic.md](../engineering/traffic.md) for how the server stretches the shared TAGO 10k/day budget.
 
 ## Tiers
 
@@ -62,4 +62,4 @@ Free hosting (500 calls/day)
 - ~~Solo $9 / Trip $29~~ (deprecated)
 - B2B API ($199+) — Phase 5+ if demand exists
 
-See [KTX_MCP_SPEC.md §11](./KTX_MCP_SPEC.md) for full commercial matrix.
+See [spec.md §11](../planning/spec.md) for full commercial matrix.

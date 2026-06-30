@@ -3,12 +3,12 @@
 **P0 (before everything else):**
 
 1. **Keyless hosted MCP** — users never apply for data.go.kr keys  
-2. **TAGO 10k/day survival** — [TRAFFIC.md](./TRAFFIC.md) cache stack  
+2. **TAGO 10k/day survival** — [traffic.md](../engineering/traffic.md) cache stack  
 
-12-week plan from [KTX_MCP_SPEC.md](./KTX_MCP_SPEC.md).  
+12-week plan from [spec.md](./spec.md).  
 **Current phase:** Phase 0 done → **Phase 1 = hosted + cache**.
 
-**Infrastructure:** Fly.io (`nrt`) + Supabase — see [DEPLOY.md](./DEPLOY.md).
+**Infrastructure:** Fly.io (`nrt`) + Supabase — see [deploy.md](../getting-started/deploy.md).
 
 ## Timeline (reordered)
 
@@ -39,7 +39,7 @@ W9-12  Phase 5  v1.0 + GTM
 | 1.3 | `search_trains` / `compare_ktx_srt` read DB only | Seoul→Busan |
 | 1.4 | `tago_calls_today` on sync worker + metrics | Dashboard / logs |
 | 1.5 | **Streamable HTTP** hosted server | Client needs **no key** |
-| 1.6 | On-demand sync for long-tail routes (capped) | TRAFFIC.md |
+| 1.6 | On-demand sync for long-tail routes (capped) | [traffic.md](../engineering/traffic.md) |
 
 **Exit criteria:** 100 simulated users × 6 MCP calls → **0 TAGO on request path**; sync < 4,000 TAGO/day.
 

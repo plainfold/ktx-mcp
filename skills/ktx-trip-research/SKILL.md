@@ -22,7 +22,7 @@ Korea long-distance rail timetable research using the `ktx-mcp` MCP server.
 
 ## Required MCP server
 
-Connect `ktx-mcp` with `DATA_GO_KR_SERVICE_KEY` set. See [docs/SETUP.md](../../docs/SETUP.md).
+Connect `ktx-mcp` hosted URL (no user API key). See [setup](../../docs/getting-started/setup.md) for BYOK dev.
 
 ## SOP — always follow this order
 
@@ -78,4 +78,4 @@ Timetable reference only. Schedules may change. Book via official Korail / SRT a
 
 ## More prompts
 
-See [docs/prompts/DEMO_QUERIES.md](../../docs/prompts/DEMO_QUERIES.md).
+See [demo-queries](../../docs/product/demo-queries.md).

@@ -98,7 +98,7 @@ Long-tail: queue `sync_route(dep, arr, date)` — if not in DB and daily sync bu
 | Allowed | Notes |
 |---------|-------|
 | Store transformed timetable rows | Service-internal DB, not “raw JSON resale” |
-| Commercial hosted MCP | [LEGAL.md](./LEGAL.md) |
+| Commercial hosted MCP | [compliance.md](../legal/compliance.md) |
 | Periodic refresh | Document `fetched_at` in responses |
 
 | Still required | |
@@ -279,4 +279,4 @@ Pre-warm 40 + station sync 1 ≈ **41 TAGO/day** fixed overhead.
 - [ ] Hosted MCP — **no** client API key
 - [ ] Production key + use case submitted
 
-See [ROADMAP.md](./ROADMAP.md) for phased delivery.
+See [roadmap.md](../planning/roadmap.md) for phased delivery.

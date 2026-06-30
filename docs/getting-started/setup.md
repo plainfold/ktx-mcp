@@ -15,10 +15,10 @@ For **travelers, ChatGPT, and Cursor users** — no [data.go.kr](https://www.dat
 }
 ```
 
-> **Hosted URL:** not live yet — see [ROADMAP.md](./ROADMAP.md).  
+> **Hosted URL:** not live yet — see [roadmap.md](../planning/roadmap.md).  
 > Server holds the TAGO key; you only connect to the MCP endpoint.
 
-**Why hosted first:** foreign users cannot easily register on the Korean public data portal. See [TRAFFIC.md](./TRAFFIC.md).
+**Why hosted first:** foreign users cannot easily register on the Korean public data portal. See [traffic.md](../engineering/traffic.md).
 
 ---
 
@@ -46,7 +46,7 @@ For local development or running your own instance with **your** TAGO key.
 | Development | 10,000 |
 | Production | Apply after use-case registration |
 
-Hosted production uses **server-side** caching to stretch 10k/day — see [TRAFFIC.md](./TRAFFIC.md).
+Hosted production uses **server-side** caching to stretch 10k/day — see [traffic.md](../engineering/traffic.md).
 
 ### 2. Install
 
@@ -114,4 +114,4 @@ pytest
 | **일반 사용자·외국인** | 호스팅 URL 연결 — **키 불필요** (준비 중) |
 | **개발자** | 자가 호스팅 + `DATA_GO_KR_SERVICE_KEY` |
 
-서버는 TAGO 일 **1만 건/일** 한도를 [캐시 전략](./TRAFFIC.md)으로 늘려 씁니다.
+서버는 TAGO 일 **1만 건/일** 한도를 [캐시 전략](../engineering/traffic.md)으로 늘려 씁니다.

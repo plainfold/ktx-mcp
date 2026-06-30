@@ -21,4 +21,4 @@ Store compliance evidence here. **Do not commit API keys.**
 Binary screenshots may be gitignored via `docs/legal/*.png` in `.gitignore`.  
 Keep copies locally even if not pushed.
 
-See [LEGAL.md](../LEGAL.md) for attribution text.
+See [compliance.md](./compliance.md) for attribution text.
