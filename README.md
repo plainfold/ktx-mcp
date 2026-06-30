@@ -9,14 +9,26 @@ Supports natural-language queries in **English, Korean, Japanese, and Chinese**.
 
 ## Status
 
-Early scaffold — see [docs/KTX_MCP_SPEC.md](docs/KTX_MCP_SPEC.md) for the full product spec.
+**Phase 0** — documentation and scaffold.  
+`get_today_kst` is implemented; other tools are [specified](./docs/TOOLS.md) and in progress.
 
 **Repository:** [github.com/plainfold/ktx-mcp](https://github.com/plainfold/ktx-mcp)
 
-## Quick start (local)
+## Documentation
+
+| Doc | Description |
+|-----|-------------|
+| [docs/SETUP.md](docs/SETUP.md) | Install & API key |
+| [docs/TOOLS.md](docs/TOOLS.md) | MCP tool reference |
+| [docs/LEGAL.md](docs/LEGAL.md) | License & disclaimers |
+| [docs/ROADMAP.md](docs/ROADMAP.md) | Implementation plan |
+| [docs/PRICING.md](docs/PRICING.md) | Hosting tiers |
+| [docs/README.md](docs/README.md) | Full doc index |
+
+## Quick start
 
 1. Apply for a [data.go.kr](https://www.data.go.kr) API key (TAGO train info, ID `15098552`).
-2. Install and run:
+2. Install:
 
 ```bash
 pip install -e ".[dev]"
@@ -40,6 +52,8 @@ ktx-mcp
 }
 ```
 
+See [docs/SETUP.md](docs/SETUP.md) for Claude Desktop, smoke tests, and Windows notes.
+
 ## Demo queries
 
 - EN: *What's the earliest KTX from Seoul to Busan tomorrow?*
@@ -47,20 +61,24 @@ ktx-mcp
 - JA: *明日ソウルから釜山の一番早いKTXは？*
 - ZH: *明天从首尔到釜山最早的高铁是几点？*
 
+More: [docs/prompts/DEMO_QUERIES.md](docs/prompts/DEMO_QUERIES.md)
+
+## Skills
+
+Agent skill with 6-step SOP: [skills/ktx-trip-research/SKILL.md](skills/ktx-trip-research/SKILL.md)
+
 ## Repository layout
 
 | Path | Purpose |
 |------|---------|
 | `src/ktx_mcp/` | MCP server implementation |
-| `docs/` | Product spec & demand research |
-| `scripts/` | TAGO smoke test, registry scan |
+| `docs/` | User guides + product spec |
 | `skills/` | L2 agent skills |
+| `scripts/` | TAGO smoke test, registry scan |
 
 ## Data attribution
 
 This service uses public data from the Ministry of Land, Infrastructure and Transport / National Public Transport Information Center (TAGO).
-
-Source: Ministry of Land, Infrastructure and Transport / TAGO
 
 ## License
 
@@ -68,4 +86,4 @@ MIT — see [LICENSE](LICENSE).
 
 ## Disclaimer
 
-This MCP provides timetable information only. It does not book tickets or guarantee seat availability. Use official Korail / SRT apps for booking.
+Timetable information only. Does not book tickets or guarantee seat availability. Use official Korail / SRT apps for booking. Not affiliated with Korail or SR.
