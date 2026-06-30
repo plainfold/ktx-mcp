@@ -1,1 +1,5 @@
-"""Placeholder adapters — TagoAdapter in Phase 1."""
+"""External data adapters."""
+
+from ktx_mcp.adapters.tago import TagoGateway
+
+__all__ = ["TagoGateway"]

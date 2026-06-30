@@ -1,7 +1,6 @@
 # MCP Tools Reference
 
-**Status:** v1.0 spec — only `get_today_kst` is implemented in code today.  
-Other tools are documented here as the implementation contract.
+**Status:** Phase 1 scaffold — `get_today_kst`, `search_stations`, `search_trains`, `compare_ktx_srt` implemented (in-memory store; Postgres later).
 
 All tool **names and descriptions are English** (LLM routing).  
 Responses support `locale`: `en` | `ko` | `ja` | `zh`.
@@ -46,7 +45,7 @@ Resolve station name to TAGO station code. Accepts multilingual aliases.
 
 **Output:** `matches[]` with `station_name`, `station_code`, `note`
 
-**Implemented:** Planned (Phase 1)
+**Implemented:** Yes (static `stations_i18n.json`)
 
 ---
 
@@ -67,7 +66,7 @@ Timetable for a route on a given date.
 
 **Does not provide:** seat availability, fares, booking
 
-**Implemented:** Planned (Phase 1)
+**Implemented:** Yes (in-memory timetable store; sync via `POST /internal/sync`)
 
 ---
 
@@ -80,7 +79,7 @@ Same route split into KTX vs SRT options.
 
 **Output:** `ktx_options[]`, `srt_options[]`, `recommendation_summary`
 
-**Implemented:** Planned (Phase 2)
+**Implemented:** Yes (Phase 1 scaffold)
 
 ---
 

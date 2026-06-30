@@ -39,6 +39,9 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["src/ktx_mcp"]
 
+[tool.hatch.build.targets.wheel.force-include]
+"src/ktx_mcp/data/stations_i18n.json" = "ktx_mcp/data/stations_i18n.json"
+
 [tool.hatch.build.targets.sdist]
 include = [
     "/src",

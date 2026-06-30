@@ -7,12 +7,11 @@ MCP server for Korea long-distance rail (KTX, SRT, ITX).
 
 ## Status
 
-Phase 1 — Fly + Supabase stack. See [docs/README.md](docs/README.md) for all documentation.
+Phase 1 scaffold — MCP tools, in-memory timetable store, `/health` + `/internal/sync` (no Postgres yet). See [docs/README.md](docs/README.md).
 
 ## Documentation (5 categories)
 
 | Category | Start here |
-|----------|------------|
 | **Getting started** | [deploy](docs/getting-started/deploy.md) · [setup](docs/getting-started/setup.md) |
 | **Product** | [tools](docs/product/tools.md) · [pricing](docs/product/pricing.md) |
 | **Engineering** | [architecture](docs/engineering/architecture.md) · [traffic](docs/engineering/traffic.md) |

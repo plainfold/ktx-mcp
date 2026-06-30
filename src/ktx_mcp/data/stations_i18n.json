@@ -22,6 +22,8 @@
   {
     "canonical": "부산",
     "code": "NAT010058",
+    "aliases": {
+      "en": ["Busan", "Busan Station"],
       "ja": ["釜山", "釜山駅"],
       "zh": ["釜山", "釜山站"]
     }

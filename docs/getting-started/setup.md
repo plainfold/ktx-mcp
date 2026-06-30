@@ -58,18 +58,20 @@ pip install -e ".[dev]"
 
 ### 3. Configure environment
 
+Create a local `.env` file (never commit). Example:
+
 ```bash
-cp .env.example .env
-# Set DATA_GO_KR_SERVICE_KEY in .env (server-side only — never commit)
+DATA_GO_KR_SERVICE_KEY=your_decoding_key_here
+KTX_MCP_TRANSPORT=stdio
 ```
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `DATA_GO_KR_SERVICE_KEY` | BYOK / server | — | TAGO key (**server only** for hosted) |
+| `DATA_GO_KR_SERVICE_KEY` | BYOK / sync | — | TAGO key (**Fly sync worker only** for hosted) |
+| `SYNC_SECRET` | Hosted sync | — | Protects `POST /internal/sync` |
 | `KTX_MCP_TRANSPORT` | No | `stdio` | `stdio` or `http` |
+| `KTX_MCP_PORT` | No | `8080` | HTTP port when `transport=http` |
 | `KTX_MCP_DEFAULT_LOCALE` | No | `en` | Response language |
-| `KTX_MCP_CACHE_TTL` | No | `900` | Train cache TTL (seconds) |
-| `REDIS_URL` | Hosted | — | Shared cache (required for multi-user) |
 
 ### 4. Smoke test TAGO
 
