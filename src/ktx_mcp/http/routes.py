@@ -1,16 +1,16 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Callable
 from dataclasses import dataclass
-from typing import TYPE_CHECKING, Callable
 
 from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 
-if TYPE_CHECKING:
-    from ktx_mcp.config import Settings
-    from ktx_mcp.store.timetable import TimetableStore
-    from ktx_mcp.sync.worker import SyncWorker
+from ktx_mcp.config import Settings
+from ktx_mcp.store.postgres import PostgresTimetableStore
+from ktx_mcp.store.timetable import TimetableStore
+from ktx_mcp.sync.worker import SyncWorker
 
 
 @dataclass(slots=True)
@@ -22,14 +22,36 @@ class HttpState:
 
 def make_health_handler(state: HttpState) -> Callable[[Request], Response]:
     async def health_handler(request: Request) -> Response:
-        row_count = await state.timetable_store.count_rows()
+        store = state.timetable_store
+        row_count = await store.count_rows()
+        if isinstance(store, PostgresTimetableStore):
+            try:
+                await store.ping()
+                database = "connected"
+            except Exception as exc:  # noqa: BLE001 — health must surface DB errors
+                return JSONResponse(
+                    {
+                        "status": "degraded",
+                        "store": "postgres",
+                        "database": "error",
+                        "database_error": str(exc),
+                        "row_count": row_count,
+                        "transport": state.settings.transport,
+                    },
+                    status_code=503,
+                )
+            store_name = "postgres"
+        else:
+            store_name = "in_memory"
+            database = "not_configured"
+
         return JSONResponse(
             {
                 "status": "ok",
-                "store": "in_memory",
+                "store": store_name,
                 "row_count": row_count,
                 "transport": state.settings.transport,
-                "database": "not_configured",
+                "database": database,
             }
         )
 

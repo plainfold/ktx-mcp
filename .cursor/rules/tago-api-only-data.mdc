@@ -1,0 +1,55 @@
+---
+description: Station and timetable data must come only from official API responses — no wiki or manual curation
+alwaysApply: true
+---
+
+# TAGO API-only data (no external sources)
+
+## Product scope
+
+**KTX and SRT timetables only.** Do not document or implement ITX, Mugunghwa, subway, holiday APIs, or booking flows unless scope explicitly changes.
+
+## Policy
+
+**Never use data from outside official API responses** for stations, timetables, codes, or searchable names.
+
+Forbidden sources include (not limited to):
+
+- Wikipedia, Namuwiki, blogs, travel guides
+- Manually invented `en` / `ja` / `zh` / `ko` aliases
+- Guessed romanization or “common passenger names” not returned by the API
+
+## Allowed
+
+| Data | Source |
+|------|--------|
+| Station `nodeid`, `nodename`, city fields | TAGO TrainInfo (`apis.data.go.kr/1613000/TrainInfo`) |
+| KTX line order & adjacent route pairs | Korail file [15127571](https://www.data.go.kr/data/15127571/fileData.do) |
+| Korail→TAGO name link | Exact match, or strip `(…)` suffix then match TAGO `nodename` |
+| Timetable rows | TAGO `GetStrtpntAlocFndTrainInfo` via sync worker |
+v1 catalog scope | `priority_station_codes.json` — KTX/SRT stations (nodeid); names from `build_stations.py` |
+
+## Implementation
+
+- `stations_i18n.json` is **generated** by `scripts/build_stations.py`, not hand-edited for names.
+- `search_stations` matches TAGO `nodename` (Korean) or `NAT...` nodeid only.
+- Do not reintroduce `station_aliases.json` or similar manual i18n tables unless a **new official API** provides those fields.
+
+## When adding a station
+
+1. Confirm `nodeid` exists via TAGO `GetCtyAcctoTrainSttnList`.
+2. Add `nodeid` to `priority_station_codes.json` if needed for v1 scope.
+3. Run `python scripts/build_stations.py` — use API `nodename` as `canonical`.
+
+## Examples
+
+```
+# BAD — wiki/blog name, not in TAGO nodename
+"canonical": "신경주"
+"aliases": { "en": ["Shin Gyeongju"] }
+
+# GOOD — TAGO response only
+"canonical": "경주"
+"code": "NATH13421"
+"source": "tago"
+```

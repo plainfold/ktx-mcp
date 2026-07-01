@@ -15,7 +15,9 @@ def test_parse_stations_fixture():
     import json
     from pathlib import Path
 
-    payload = json.loads(Path("tests/fixtures/tago_stations_seoul.json").read_text(encoding="utf-8"))
+    payload = json.loads(
+        Path("tests/fixtures/tago_stations_seoul.json").read_text(encoding="utf-8")
+    )
     rows = parse_stations(payload)
     assert rows[0]["station_code"] == "NAT010000"
     assert rows[0]["station_name"] == "서울"

@@ -7,7 +7,7 @@ from fastmcp import FastMCP
 from ktx_mcp.adapters.tago import TagoGateway
 from ktx_mcp.config import Settings
 from ktx_mcp.http.routes import HttpState, make_health_handler, make_sync_handler
-from ktx_mcp.store.timetable import InMemoryTimetableStore
+from ktx_mcp.store.factory import create_timetable_store
 from ktx_mcp.sync.worker import SyncWorker
 from ktx_mcp.tools.datetime_kst import today_kst_payload
 from ktx_mcp.tools.stations import search_stations_payload
@@ -16,8 +16,9 @@ from ktx_mcp.tools.trains import compare_ktx_srt_payload, search_trains_payload
 mcp = FastMCP(
     name="ktx-mcp",
     instructions=(
-        "Korea long-distance rail (KTX, SRT, ITX) timetables from TAGO public data. "
-        "Accept station names in English, Korean, Japanese, or Chinese. "
+        "Korea KTX and SRT train timetables from TAGO public data. "
+        "Only KTX/SRT — not ITX or conventional trains. "
+        "Station names must match TAGO nodename (Korean) or nodeid (NAT...). "
         "Always call get_today_kst before date-sensitive queries."
     ),
 )
@@ -26,7 +27,7 @@ mcp = FastMCP(
 @lru_cache(maxsize=1)
 def _http_state() -> HttpState:
     settings = Settings.from_env()
-    store = InMemoryTimetableStore()
+    store = create_timetable_store(settings.database_url)
     tago = TagoGateway(settings.tago_service_key) if settings.tago_service_key else None
     worker = SyncWorker(store, tago)
     return HttpState(settings=settings, timetable_store=store, sync_worker=worker)
@@ -56,7 +57,7 @@ def get_today_kst() -> dict[str, str]:
     name="search_stations",
     description=(
         "Resolve a station name to TAGO station code. "
-        "Accepts English, Korean, Japanese, or Chinese aliases."
+        "Query must be TAGO nodename (Korean) or nodeid (NAT...)."
     ),
 )
 def search_stations(query: str, locale: str = "en") -> dict:
@@ -66,9 +67,9 @@ def search_stations(query: str, locale: str = "en") -> dict:
 @mcp.tool(
     name="search_trains",
     description=(
-        "Timetable for a route on a given date (YYYYMMDD). "
+        "KTX/SRT timetable for a route on a given date (YYYYMMDD). "
         "Reads from the local timetable store (synced from TAGO). "
-        "Does not provide seat availability or booking."
+        "train_type: KTX, SRT, or ALL (both). Does not include ITX or other trains."
     ),
 )
 async def search_trains(

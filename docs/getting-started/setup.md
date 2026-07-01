@@ -2,53 +2,32 @@
 
 ## Recommended: keyless hosted (no API key)
 
-For **travelers, ChatGPT, and Cursor users** — no [data.go.kr](https://www.data.go.kr) account required.
+For travelers, ChatGPT, and Cursor users — no [data.go.kr](https://www.data.go.kr) account required.
 
 ```json
 {
   "mcpServers": {
     "ktx-mcp": {
-      "url": "https://mcp.example.com/mcp",
-      "headers": {}
+      "url": "https://ktx-mcp.fly.dev/mcp"
     }
   }
 }
 ```
 
-> **Hosted URL:** not live yet — see [roadmap.md](../planning/roadmap.md).  
-> Server holds the TAGO key; you only connect to the MCP endpoint.
-
-**Why hosted first:** foreign users cannot easily register on the Korean public data portal. See [traffic.md](../engineering/traffic.md).
+Deploy your own: [deploy.md](deploy.md).  
+Server holds the TAGO key; clients only connect to `/mcp`.
 
 ---
 
 ## Optional: self-host (developers / BYOK)
 
-For local development or running your own instance with **your** TAGO key.
-
 ### Prerequisites
 
 - Python **3.11+**
-- [data.go.kr](https://www.data.go.kr) account (Korea residents / developers)
-- TAGO train API key ([portal ID `15098552`](https://www.data.go.kr/data/15098552/openapi.do))
+- [data.go.kr](https://www.data.go.kr) account (for TAGO key)
+- [TAGO 열차정보 15098552](https://www.data.go.kr/data/15098552/openapi.do) 활용신청
 
-### 1. Get a TAGO API key (BYOK only)
-
-1. Sign up at [data.go.kr](https://www.data.go.kr) (English: [/en/](https://www.data.go.kr/en/index.do)).
-2. Open [TAGO 열차정보](https://www.data.go.kr/data/15098552/openapi.do).
-3. Click **활용신청** (apply for use).
-4. Copy the **일반 인증키 (Decoding)** service key.
-
-**Traffic limits (your key):**
-
-| Account | Daily TAGO limit |
-|---------|------------------|
-| Development | 10,000 |
-| Production | Apply after use-case registration |
-
-Hosted production uses **server-side** caching to stretch 10k/day — see [traffic.md](../engineering/traffic.md).
-
-### 2. Install
+### 1. Install
 
 ```bash
 git clone https://github.com/plainfold/ktx-mcp.git
@@ -56,51 +35,68 @@ cd ktx-mcp
 pip install -e ".[dev]"
 ```
 
-### 3. Configure environment
-
-Create a local `.env` file (never commit). Example:
+### 2. Environment
 
 ```bash
-DATA_GO_KR_SERVICE_KEY=your_decoding_key_here
-KTX_MCP_TRANSPORT=stdio
+cp docs/getting-started/env.template .env
 ```
 
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `DATA_GO_KR_SERVICE_KEY` | BYOK / sync | — | TAGO key (**Fly sync worker only** for hosted) |
-| `SYNC_SECRET` | Hosted sync | — | Protects `POST /internal/sync` |
+| `DATA_GO_KR_SERVICE_KEY` | BYOK / sync | — | TAGO Decoding key |
+| `DATABASE_URL` | Postgres | — | Supabase pooler URL |
+| `SYNC_SECRET` | Hosted sync | — | `X-Sync-Secret` for `/internal/sync` |
 | `KTX_MCP_TRANSPORT` | No | `stdio` | `stdio` or `http` |
-| `KTX_MCP_PORT` | No | `8080` | HTTP port when `transport=http` |
+| `KTX_MCP_PORT` | No | `8080` | HTTP port |
 | `KTX_MCP_DEFAULT_LOCALE` | No | `en` | Response language |
 
-### 4. Smoke test TAGO
+### 3. Smoke test TAGO
 
 ```bash
 python scripts/smoke_tago.py
 ```
 
-### 5. Build station list (official TAGO API)
+### 4. Station & route data (official sources only)
 
-`src/ktx_mcp/data/station_aliases.json` — **편집하는 파일**
+| Script / file | Role |
+|---------------|------|
+| `scripts/fetch_korail_ktx_lines.py` | [15127571](https://www.data.go.kr/data/15127571/fileData.do) → `ktx_line_stations.json` |
+| `priority_station_codes.json` | KTX 정차역 TAGO `nodeid` 목록 (70) |
+| `scripts/build_stations.py` | TAGO API → `stations_i18n.json` |
+| `scripts/list_regional_stations.py` | 지역별 역 목록 출력 (검증용) |
 
-| 필드 | 출처 |
-|------|------|
-| 키 (예: `신경주`) | 사용자에게 보이는 **표시 역명** |
-| `tago_name` | TAGO `nodename`이 다를 때만 (예: `신경주` → `경주`) |
-| `en` / `ja` / `zh` / `ko` | 검색용 별칭 (API 없음) |
-| `note` | MCP 응답 메모 |
+- `search_stations`: TAGO `nodename`(한글) 또는 `NAT...` 코드만
+- Wiki·수동 en/ja/zh 별칭 **금지** — [compliance.md](../legal/compliance.md)
 
-`python scripts/build_stations.py` → TAGO에서 `nodeid` 조회 후 `stations_i18n.json` 생성.
+### 5. Database
 
-- API: `GetCtyCodeList` → `GetCtyAcctoTrainSttnList` (`https://apis.data.go.kr/1613000/TrainInfo`)
+```bash
+python scripts/db_setup.py --migrate
+python scripts/seed_sync_routes.py    # optional metadata
+python scripts/run_sync.py            # TAGO → Postgres
+```
 
-### 6. Run locally
+| Supabase URL | Port | Note |
+|--------------|------|------|
+| Session pooler | `:5432` | Local dev (IPv4) |
+| Transaction pooler | `:6543` | Fly production reads |
+
+### 6. Run
+
+**stdio (Cursor local):**
 
 ```bash
 ktx-mcp
 ```
 
-### 6. Cursor (local BYOK)
+**http (matches Fly):**
+
+```bash
+KTX_MCP_TRANSPORT=http ktx-mcp
+curl http://localhost:8080/health
+```
+
+### 7. Cursor (local BYOK)
 
 ```json
 {
@@ -109,17 +105,19 @@ ktx-mcp
       "command": "uvx",
       "args": ["ktx-mcp"],
       "env": {
-        "DATA_GO_KR_SERVICE_KEY": "YOUR_KEY"
+        "DATA_GO_KR_SERVICE_KEY": "YOUR_KEY",
+        "DATABASE_URL": "postgresql://..."
       }
     }
   }
 }
 ```
 
-### 7. Tests
+### 8. Tests
 
 ```bash
 pytest
+ruff check src tests scripts
 ```
 
 ---
@@ -128,7 +126,8 @@ pytest
 
 | 대상 | 방법 |
 |------|------|
-| **일반 사용자·외국인** | 호스팅 URL 연결 — **키 불필요** (준비 중) |
-| **개발자** | 자가 호스팅 + `DATA_GO_KR_SERVICE_KEY` |
+| **일반 사용자** | 호스팅 URL — 키 불필요 |
+| **운영자** | Fly + Supabase — [deploy.md](deploy.md) |
+| **개발자** | `.env` + `pip install -e ".[dev]"` |
 
-서버는 TAGO 일 **1만 건/일** 한도를 [캐시 전략](../engineering/traffic.md)으로 늘려 씁니다.
+TAGO 일 1만 건 한도는 [traffic.md](../engineering/traffic.md) 캐시 전략으로 운영합니다.

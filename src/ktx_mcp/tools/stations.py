@@ -15,16 +15,6 @@ def _load_station_catalog() -> list[dict[str, Any]]:
     return json.loads(raw)
 
 
-def _collect_names(entry: dict[str, Any]) -> list[str]:
-    names = [entry["canonical"]]
-    if tago := entry.get("tago_name"):
-        names.append(str(tago))
-    aliases = entry.get("aliases") or {}
-    for values in aliases.values():
-        names.extend(values)
-    return names
-
-
 def _score_match(query: str, candidate: str) -> float:
     q = query.strip().casefold()
     c = candidate.strip().casefold()
@@ -43,16 +33,14 @@ def search_stations_payload(query: str, locale: str = "en") -> dict[str, Any]:
     ranked: list[StationMatch] = []
 
     for entry in catalog:
-        best = 0.0
-        for name in _collect_names(entry):
-            best = max(best, _score_match(query, name))
-        if best > 0:
+        name = str(entry["canonical"])
+        score = _score_match(query, name)
+        if score > 0:
             ranked.append(
                 StationMatch(
-                    station_name=entry["canonical"],
+                    station_name=name,
                     station_code=entry["code"],
-                    note=entry.get("note"),
-                    score=best,
+                    score=score,
                 )
             )
 
@@ -62,7 +50,7 @@ def search_stations_payload(query: str, locale: str = "en") -> dict[str, Any]:
     summary = (
         f"Found {len(matches)} station(s) for '{query}'."
         if matches
-        else f"No stations matched '{query}'."
+        else f"No stations matched '{query}'. Use TAGO nodename (Korean) or nodeid (NAT...)."
     )
     return tool_envelope(
         {
@@ -79,7 +67,7 @@ def resolve_station_code(name_or_code: str) -> str | None:
     if value.upper().startswith("NAT"):
         return value.upper()
 
-    payload = search_stations_payload(value, locale="en")
+    payload = search_stations_payload(value, locale="ko")
     matches = payload.get("matches") or []
     if not matches:
         return None

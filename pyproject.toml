@@ -16,6 +16,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Information Analysis",
 ]
 dependencies = [
+    "asyncpg>=0.30.0",
     "fastmcp>=2.0.0",
     "httpx>=0.27.0",
     "pydantic>=2.0.0",
@@ -41,7 +42,8 @@ packages = ["src/ktx_mcp"]
 
 [tool.hatch.build.targets.wheel.force-include]
 "src/ktx_mcp/data/stations_i18n.json" = "ktx_mcp/data/stations_i18n.json"
-"src/ktx_mcp/data/station_aliases.json" = "ktx_mcp/data/station_aliases.json"
+"src/ktx_mcp/data/priority_station_codes.json" = "ktx_mcp/data/priority_station_codes.json"
+"src/ktx_mcp/data/ktx_line_stations.json" = "ktx_mcp/data/ktx_line_stations.json"
 
 [tool.hatch.build.targets.sdist]
 include = [

@@ -16,11 +16,13 @@ htmlcov/
 # Env & secrets
 .env*
 .env.local*
-.env.example
 
 # IDE
 .idea/
 .vscode/
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
 *.swp
 
 # OS
@@ -29,3 +31,5 @@ Thumbs.db
 
 # Project
 docs/legal/*.png
+docs/regional-stations.txt
+docs/tago-*.txt

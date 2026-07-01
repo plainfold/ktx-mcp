@@ -1,5 +1,20 @@
-"""TAGO → store sync jobs."""
+from __future__ import annotations
 
-from ktx_mcp.sync.worker import DEFAULT_SYNC_ROUTES, SyncResult, SyncWorker
+from ktx_mcp.data.korail_lines_loader import (
+    BUSAN_CODE,
+    DEFAULT_SYNC_ROUTES,
+    SEOUL_CODE,
+    SUSEO_CODE,
+    build_sync_routes,
+)
+from ktx_mcp.sync.worker import SyncResult, SyncWorker
 
-__all__ = ["DEFAULT_SYNC_ROUTES", "SyncResult", "SyncWorker"]
+__all__ = [
+    "BUSAN_CODE",
+    "DEFAULT_SYNC_ROUTES",
+    "SEOUL_CODE",
+    "SUSEO_CODE",
+    "SyncResult",
+    "SyncWorker",
+    "build_sync_routes",
+]

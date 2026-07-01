@@ -35,12 +35,12 @@ CREATE TABLE IF NOT EXISTS sync_routes (
   PRIMARY KEY (dep_code, arr_code)
 );
 
--- Seed top routes (expand to 30 in app config)
+-- Seed top routes (full v1 list: python scripts/seed_sync_routes.py)
 INSERT INTO sync_routes (dep_code, arr_code, priority, label) VALUES
-  ('NAT010000', 'NAT014445', 10, 'Seoul-Busan'),
-  ('NATH30000', 'NAT014445', 10, 'Suseo-Busan'),
-  ('NAT010000', 'NAT013271', 20, 'Seoul-Dongdaegu'),
-  ('NAT011668', 'NAT013271', 30, 'Daejeon-Dongdaegu')
+  ('NAT010000', 'NAT014445', 10, '서울-부산'),
+  ('NATH30000', 'NAT014445', 10, '수서-부산'),
+  ('NAT010000', 'NAT013271', 20, '서울-동대구'),
+  ('NAT011668', 'NAT013271', 30, '대전-동대구')
 ON CONFLICT DO NOTHING;
 
 -- RLS: public read for timetable data (hosted MCP uses service role or anon read)

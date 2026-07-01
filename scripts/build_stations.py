@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Build stations_i18n.json from official TAGO APIs + station_aliases.json.
+"""Build stations_i18n.json from TAGO TrainInfo API only.
 
-TAGO TrainInfo (data.go.kr 15098552):
-  - GetCtyCodeList
-  - GetCtyAcctoTrainSttnList?cityCode=11
+TAGO (data.go.kr 15098552):
+  GetCtyCodeList → GetCtyAcctoTrainSttnList
 
-  nodeid  → stations_i18n.code
-  nodename → matched via station_aliases.json `tago_name` when set
-
-  en/ja/zh/ko → station_aliases.json only (not in TAGO API)
+  nodeid   → code
+  nodename → canonical (only trusted name field)
 
 Usage:
   python scripts/build_stations.py
@@ -26,41 +23,25 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from ktx_mcp.adapters.tago_client import TagoApiError, fetch_all_stations, load_service_key  # noqa: E402
-from ktx_mcp.data.station_aliases_loader import (  # noqa: E402
-    load_station_aliases,
-    priority_station_names,
-    tago_name_for,
+from ktx_mcp.adapters.tago_client import (  # noqa: E402
+    TagoApiError,
+    fetch_all_stations,
+    load_service_key,
 )
+from ktx_mcp.data.priority_stations_loader import load_priority_nodeids  # noqa: E402
 
 DATA_DIR = ROOT / "src" / "ktx_mcp/data"
 OUTPUT_PATH = DATA_DIR / "stations_i18n.json"
 
 
-def _build_entry(
-    display_name: str,
-    station: dict[str, str],
-    alias_row: dict,
-) -> dict:
-    tago_name = tago_name_for(display_name, alias_row)
-    entry: dict = {
-        "canonical": display_name,
+def _build_entry(station: dict[str, str]) -> dict:
+    return {
+        "canonical": station["canonical"],
         "code": station["code"],
-        "aliases": {
-            "en": alias_row.get("en", []),
-            "ja": alias_row.get("ja", []),
-            "zh": alias_row.get("zh", []),
-        },
+        "city_code": station.get("city_code", ""),
+        "city_name": station.get("city_name", ""),
+        "source": "tago",
     }
-    if tago_name != display_name:
-        entry["tago_name"] = tago_name
-    ko = alias_row.get("ko")
-    if ko:
-        entry["aliases"]["ko"] = ko
-    note = alias_row.get("note")
-    if note:
-        entry["note"] = note
-    return entry
 
 
 def main() -> int:
@@ -82,31 +63,23 @@ def main() -> int:
         print(exc, file=sys.stderr)
         return 2
 
-    alias_table = load_station_aliases()
-    by_tago_name = {row["canonical"]: row for row in stations}
+    by_code = {row["code"]: row for row in stations}
 
     if args.all:
-        selected: list[tuple[str, dict[str, str]]] = [
-            (row["canonical"], row) for row in stations
-        ]
+        selected = [row for row in stations]
     else:
         selected = []
         missing: list[str] = []
-        for display_name in priority_station_names():
-            alias_row = alias_table[display_name]
-            lookup = tago_name_for(display_name, alias_row)
-            row = by_tago_name.get(lookup)
+        for nodeid in load_priority_nodeids():
+            row = by_code.get(nodeid)
             if row:
-                selected.append((display_name, row))
+                selected.append(row)
             else:
-                missing.append(f"{display_name}→{lookup}")
+                missing.append(nodeid)
         if missing:
-            print("Warning: TAGO nodename not found:", ", ".join(missing), file=sys.stderr)
+            print("Warning: TAGO nodeid not found:", ", ".join(missing), file=sys.stderr)
 
-    entries = [
-        _build_entry(name, row, alias_table.get(name, {}))
-        for name, row in selected
-    ]
+    entries = [_build_entry(row) for row in selected]
     entries.sort(key=lambda item: item["canonical"])
 
     print(f"TAGO stations total: {len(stations)}")

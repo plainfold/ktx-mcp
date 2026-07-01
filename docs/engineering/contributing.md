@@ -4,7 +4,7 @@ Thanks for helping improve ktx-mcp.
 
 ## Before you start
 
-1. Read [compliance.md](../legal/compliance.md) — we only use **TAGO** public data.
+1. Read [compliance.md](../legal/compliance.md) — official TAGO + Korail file data only.
 2. Read [tools.md](../product/tools.md) for the tool contract.
 3. Do not add Korail scraping, KRIC rail portal, or booking features.
 
@@ -14,14 +14,14 @@ Thanks for helping improve ktx-mcp.
 git clone https://github.com/plainfold/ktx-mcp.git
 cd ktx-mcp
 pip install -e ".[dev]"
-cp .env.example .env   # add DATA_GO_KR_SERVICE_KEY
+cp docs/getting-started/env.template .env
 pytest
 ```
 
 ## Code style
 
 - Python 3.11+
-- `ruff` for lint/format
+- `ruff check src tests scripts`
 - Type hints on public functions
 - Tool descriptions in **English**
 
@@ -36,20 +36,16 @@ pytest
 ## Commit messages
 
 ```
-feat: add search_stations with i18n aliases
-fix: handle TAGO empty train list
-docs: update SETUP for Windows
-test: add Seoul→Busan fixture
+feat: add postgres timetable store
+fix: repair http routes import for fly deploy
+docs: update deploy checklist
+test: add sync route coverage
 ```
 
 ## Reporting issues
 
-Include:
-
-- MCP client (Cursor, Claude Desktop, etc.)
-- Tool name and inputs
-- Expected vs actual (no API keys in issues)
+Include MCP client, tool name, inputs, expected vs actual (no API keys).
 
 ## License
 
-By contributing, you agree your contributions are licensed under the [MIT License](../../LICENSE).
+Contributions are MIT — see [LICENSE](../../LICENSE).

@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from ktx_mcp.adapters.tago_client import OP_TRAIN_TIMETABLE, tago_get
-from ktx_mcp.models.train import TrainDeparture
+from ktx_mcp.models.train import TrainDeparture, is_ktx_or_srt
 
 
 class TagoGateway:
@@ -56,6 +56,8 @@ def _parse_train_items(
         train_type = str(item.get("traingradename") or item.get("trainGradeName") or "UNKNOWN")
         train_no = str(item.get("trainno") or item.get("trainNo") or "")
         if not dep_time or not arr_time:
+            continue
+        if not is_ktx_or_srt(train_type):
             continue
         rows.append(
             TrainDeparture(

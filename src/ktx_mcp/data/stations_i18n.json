@@ -1,552 +1,492 @@
 [
   {
+    "canonical": "가남",
+    "code": "NAT280090",
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
+  },
+  {
+    "canonical": "감곡장호원",
+    "code": "NAT280212",
+    "city_code": "33",
+    "city_name": "충청북도",
+    "source": "tago"
+  },
+  {
     "canonical": "강릉",
     "code": "NAT601936",
-    "aliases": {
-      "en": [
-        "Gangneung",
-        "Gangneung Station"
-      ],
-      "ja": [
-        "江陵",
-        "江陵駅"
-      ],
-      "zh": [
-        "江陵",
-        "江陵站"
-      ]
-    }
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
+  },
+  {
+    "canonical": "경산",
+    "code": "NAT013395",
+    "city_code": "37",
+    "city_name": "경상북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "경주",
+    "code": "NATH13421",
+    "city_code": "37",
+    "city_name": "경상북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "계룡",
+    "code": "NAT030254",
+    "city_code": "34",
+    "city_name": "충청남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "곡성",
+    "code": "NAT041072",
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "공주",
+    "code": "NATH20438",
+    "city_code": "34",
+    "city_name": "충청남도",
+    "source": "tago"
   },
   {
     "canonical": "광명",
     "code": "NATH10219",
-    "aliases": {
-      "en": [
-        "Gwangmyeong",
-        "Gwangmyeong Station"
-      ],
-      "ja": [
-        "光明",
-        "光明駅"
-      ],
-      "zh": [
-        "光明",
-        "光明站"
-      ]
-    }
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
   },
   {
     "canonical": "광주송정",
     "code": "NAT031857",
-    "aliases": {
-      "en": [
-        "Gwangju Songjeong",
-        "Gwangju-Songjeong Station"
-      ],
-      "ja": [
-        "光州松汀",
-        "光州松汀駅"
-      ],
-      "zh": [
-        "光州松汀",
-        "光州松汀站"
-      ]
-    }
+    "city_code": "24",
+    "city_name": "광주광역시",
+    "source": "tago"
+  },
+  {
+    "canonical": "구례구",
+    "code": "NAT041285",
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "구포",
+    "code": "NAT014281",
+    "city_code": "21",
+    "city_name": "부산광역시",
+    "source": "tago"
+  },
+  {
+    "canonical": "김제",
+    "code": "NAT031056",
+    "city_code": "35",
+    "city_name": "전라북도",
+    "source": "tago"
   },
   {
     "canonical": "김천구미",
     "code": "NATH12383",
-    "aliases": {
-      "en": [
-        "Gimcheon Gumi",
-        "Gimcheon-Gumi Station"
-      ],
-      "ja": [
-        "金泉龟尾",
-        "金泉龟尾駅"
-      ],
-      "zh": [
-        "金泉龟尾",
-        "金泉龟尾站"
-      ]
-    }
+    "city_code": "37",
+    "city_name": "경상북도",
+    "source": "tago"
   },
   {
     "canonical": "나주",
     "code": "NAT031998",
-    "aliases": {
-      "en": [
-        "Naju",
-        "Naju Station"
-      ],
-      "ja": [
-        "羅州",
-        "羅州駅"
-      ],
-      "zh": [
-        "罗州",
-        "罗州站"
-      ]
-    }
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "남원",
+    "code": "NAT040868",
+    "city_code": "35",
+    "city_name": "전라북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "논산",
+    "code": "NAT030508",
+    "city_code": "34",
+    "city_name": "충청남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "단양",
+    "code": "NAT021784",
+    "city_code": "33",
+    "city_name": "충청북도",
+    "source": "tago"
   },
   {
     "canonical": "대전",
     "code": "NAT011668",
-    "aliases": {
-      "en": [
-        "Daejeon",
-        "Daejeon Station"
-      ],
-      "ja": [
-        "大田",
-        "大田駅"
-      ],
-      "zh": [
-        "大田",
-        "大田站"
-      ]
-    }
+    "city_code": "25",
+    "city_name": "대전광역시",
+    "source": "tago"
+  },
+  {
+    "canonical": "덕소",
+    "code": "NAT020178",
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
   },
   {
     "canonical": "동대구",
     "code": "NAT013271",
-    "aliases": {
-      "en": [
-        "Dongdaegu",
-        "Dongdaegu Station"
-      ],
-      "ja": [
-        "東大邱",
-        "東大邱駅"
-      ],
-      "zh": [
-        "东大邱",
-        "东大邱站"
-      ]
-    }
+    "city_code": "22",
+    "city_name": "대구광역시",
+    "source": "tago"
+  },
+  {
+    "canonical": "동해",
+    "code": "NAT601485",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
+  },
+  {
+    "canonical": "둔내",
+    "code": "NATN10428",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
   },
   {
     "canonical": "마산",
     "code": "NAT880345",
-    "aliases": {
-      "en": [
-        "Masan",
-        "Masan Station"
-      ],
-      "ja": [
-        "馬山",
-        "馬山駅"
-      ],
-      "zh": [
-        "马山",
-        "马山站"
-      ]
-    }
+    "city_code": "38",
+    "city_name": "경상남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "만종",
+    "code": "NAT021033",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
   },
   {
     "canonical": "목포",
     "code": "NAT032563",
-    "aliases": {
-      "en": [
-        "Mokpo",
-        "Mokpo Station"
-      ],
-      "ja": [
-        "木浦",
-        "木浦駅"
-      ],
-      "zh": [
-        "木浦",
-        "木浦站"
-      ]
-    }
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "묵호",
+    "code": "NAT601545",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
+  },
+  {
+    "canonical": "물금",
+    "code": "NAT014150",
+    "city_code": "38",
+    "city_name": "경상남도",
+    "source": "tago"
   },
   {
     "canonical": "밀양",
     "code": "NAT013841",
-    "aliases": {
-      "en": [
-        "Miryang",
-        "Miryang Station"
-      ],
-      "ja": [
-        "密陽",
-        "密陽駅"
-      ],
-      "zh": [
-        "密阳",
-        "密阳站"
-      ]
-    }
+    "city_code": "38",
+    "city_name": "경상남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "부발",
+    "code": "NAT250428",
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
   },
   {
     "canonical": "부산",
     "code": "NAT014445",
-    "aliases": {
-      "en": [
-        "Busan",
-        "Busan Station"
-      ],
-      "ja": [
-        "釜山",
-        "釜山駅"
-      ],
-      "zh": [
-        "釜山",
-        "釜山站"
-      ]
-    }
+    "city_code": "21",
+    "city_name": "부산광역시",
+    "source": "tago"
+  },
+  {
+    "canonical": "상봉",
+    "code": "NAT020040",
+    "city_code": "11",
+    "city_name": "서울특별시",
+    "source": "tago"
+  },
+  {
+    "canonical": "서대구",
+    "code": "NAT013189",
+    "city_code": "22",
+    "city_name": "대구광역시",
+    "source": "tago"
   },
   {
     "canonical": "서대전",
     "code": "NAT030057",
-    "aliases": {
-      "en": [
-        "Seodaejeon",
-        "West Daejeon Station"
-      ],
-      "ja": [
-        "西大田",
-        "西大田駅"
-      ],
-      "zh": [
-        "西大田",
-        "西大田站"
-      ]
-    }
+    "city_code": "25",
+    "city_name": "대전광역시",
+    "source": "tago"
   },
   {
     "canonical": "서울",
     "code": "NAT010000",
-    "aliases": {
-      "en": [
-        "Seoul",
-        "Seoul Station"
-      ],
-      "ja": [
-        "ソウル",
-        "ソウル駅"
-      ],
-      "zh": [
-        "首尔",
-        "首尔站"
-      ]
-    },
-    "note": "KTX main; separate from Suseo (SRT)"
+    "city_code": "11",
+    "city_name": "서울특별시",
+    "source": "tago"
+  },
+  {
+    "canonical": "서원주",
+    "code": "NAT020864",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
   },
   {
     "canonical": "수서",
     "code": "NATH30000",
-    "aliases": {
-      "en": [
-        "Suseo",
-        "Suseo Station"
-      ],
-      "ja": [
-        "水西",
-        "水西駅"
-      ],
-      "zh": [
-        "水西",
-        "水西站"
-      ]
-    },
-    "note": "SRT and KTX"
+    "city_code": "11",
+    "city_name": "서울특별시",
+    "source": "tago"
+  },
+  {
+    "canonical": "수원",
+    "code": "NAT010415",
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
   },
   {
     "canonical": "순천",
     "code": "NAT041595",
-    "aliases": {
-      "en": [
-        "Suncheon",
-        "Suncheon Station"
-      ],
-      "ja": [
-        "順天",
-        "順天駅"
-      ],
-      "zh": [
-        "顺天",
-        "顺天站"
-      ]
-    }
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
   },
   {
-    "canonical": "신경주",
-    "code": "NATH13421",
-    "aliases": {
-      "en": [
-        "Singyeongju",
-        "Shin Gyeongju Station",
-        "Gyeongju"
-      ],
-      "ja": [
-        "新慶州",
-        "新慶州駅"
-      ],
-      "zh": [
-        "新庆州",
-        "新庆州站"
-      ],
-      "ko": [
-        "경주"
-      ]
-    },
-    "tago_name": "경주"
+    "canonical": "안동",
+    "code": "NAT022558",
+    "city_code": "37",
+    "city_name": "경상북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "앙성온천",
+    "code": "NAT280358",
+    "city_code": "33",
+    "city_name": "충청북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "양평",
+    "code": "NAT020524",
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
   },
   {
     "canonical": "여수EXPO",
     "code": "NAT041993",
-    "aliases": {
-      "en": [
-        "Yeosu Expo",
-        "Yeosu Station"
-      ],
-      "ja": [
-        "麗水EXPO",
-        "麗水駅"
-      ],
-      "zh": [
-        "丽水EXPO",
-        "丽水站"
-      ]
-    }
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "여천",
+    "code": "NAT041866",
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
   },
   {
     "canonical": "영등포",
     "code": "NAT010091",
-    "aliases": {
-      "en": [
-        "Yeongdeungpo",
-        "Yeongdeungpo Station"
-      ],
-      "ja": [
-        "永登浦",
-        "永登浦駅"
-      ],
-      "zh": [
-        "永登浦",
-        "永登浦站"
-      ]
-    }
+    "city_code": "11",
+    "city_name": "서울특별시",
+    "source": "tago"
+  },
+  {
+    "canonical": "영주",
+    "code": "NAT022188",
+    "city_code": "37",
+    "city_name": "경상북도",
+    "source": "tago"
   },
   {
     "canonical": "오송",
     "code": "NAT050044",
-    "aliases": {
-      "en": [
-        "Osong"
-      ],
-      "ja": [
-        "五松"
-      ],
-      "zh": [
-        "五松"
-      ]
-    }
+    "city_code": "33",
+    "city_name": "충청북도",
+    "source": "tago"
   },
   {
     "canonical": "용산",
     "code": "NAT010032",
-    "aliases": {
-      "en": [
-        "Yongsan",
-        "Yongsan Station"
-      ],
-      "ja": [
-        "龍山",
-        "龍山駅"
-      ],
-      "zh": [
-        "龙山",
-        "龙山站"
-      ]
-    }
+    "city_code": "11",
+    "city_name": "서울특별시",
+    "source": "tago"
   },
   {
-    "canonical": "울산(통도사)",
+    "canonical": "울산",
     "code": "NATH13717",
-    "aliases": {
-      "en": [
-        "Ulsan Tongdosa",
-        "Ulsan Station"
-      ],
-      "ja": [
-        "蔚山通度寺",
-        "蔚山駅"
-      ],
-      "zh": [
-        "蔚山通度寺",
-        "蔚山站"
-      ],
-      "ko": [
-        "울산",
-        "통도사"
-      ]
-    },
-    "tago_name": "울산"
+    "city_code": "26",
+    "city_name": "울산광역시",
+    "source": "tago"
+  },
+  {
+    "canonical": "원주",
+    "code": "NAT020947",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
   },
   {
     "canonical": "익산",
     "code": "NAT030879",
-    "aliases": {
-      "en": [
-        "Iksan",
-        "Iksan Station"
-      ],
-      "ja": [
-        "益山",
-        "益山駅"
-      ],
-      "zh": [
-        "益山",
-        "益山站"
-      ]
-    }
+    "city_code": "35",
+    "city_name": "전라북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "장성",
+    "code": "NAT031638",
+    "city_code": "36",
+    "city_name": "전라남도",
+    "source": "tago"
   },
   {
     "canonical": "전주",
     "code": "NAT040257",
-    "aliases": {
-      "en": [
-        "Jeonju",
-        "Jeonju Station"
-      ],
-      "ja": [
-        "全州",
-        "全州駅"
-      ],
-      "zh": [
-        "全州",
-        "全州站"
-      ]
-    }
+    "city_code": "35",
+    "city_name": "전라북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "정동진",
+    "code": "NAT601774",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
   },
   {
     "canonical": "정읍",
     "code": "NAT031314",
-    "aliases": {
-      "en": [
-        "Jeongeup",
-        "Jeongeup Station"
-      ],
-      "ja": [
-        "井邑",
-        "井邑駅"
-      ],
-      "zh": [
-        "井邑",
-        "井邑站"
-      ]
-    }
+    "city_code": "35",
+    "city_name": "전라북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "제천",
+    "code": "NAT021549",
+    "city_code": "33",
+    "city_name": "충청북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "진부",
+    "code": "NATN10787",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
+  },
+  {
+    "canonical": "진영",
+    "code": "NAT880177",
+    "city_code": "38",
+    "city_name": "경상남도",
+    "source": "tago"
   },
   {
     "canonical": "진주",
     "code": "NAT881014",
-    "aliases": {
-      "en": [
-        "Jinju",
-        "Jinju Station"
-      ],
-      "ja": [
-        "晋州",
-        "晋州駅"
-      ],
-      "zh": [
-        "晋州",
-        "晋州站"
-      ]
-    }
+    "city_code": "38",
+    "city_name": "경상남도",
+    "source": "tago"
+  },
+  {
+    "canonical": "창원",
+    "code": "NAT880310",
+    "city_code": "38",
+    "city_name": "경상남도",
+    "source": "tago"
   },
   {
     "canonical": "창원중앙",
     "code": "NAT880281",
-    "aliases": {
-      "en": [
-        "Changwon Jungang",
-        "Changwon Central Station"
-      ],
-      "ja": [
-        "昌原中央",
-        "昌原中央駅"
-      ],
-      "zh": [
-        "昌原中央",
-        "昌原中央站"
-      ]
-    }
+    "city_code": "38",
+    "city_name": "경상남도",
+    "source": "tago"
   },
   {
     "canonical": "천안아산",
     "code": "NATH10960",
-    "aliases": {
-      "en": [
-        "Cheonan Asan",
-        "Asan Cheonan Station"
-      ],
-      "ja": [
-        "天安牙山",
-        "天安牙山駅"
-      ],
-      "zh": [
-        "天安牙山",
-        "天安牙山站"
-      ]
-    }
+    "city_code": "34",
+    "city_name": "충청남도",
+    "source": "tago"
   },
   {
-    "canonical": "평택지제",
-    "code": "NAT010754",
-    "aliases": {
-      "en": [
-        "Pyeongtaek Jije",
-        "Jije Station"
-      ],
-      "ja": [
-        "平沢芝制",
-        "芝制駅"
-      ],
-      "zh": [
-        "平泽芝制",
-        "芝制站"
-      ]
-    },
-    "tago_name": "평택"
+    "canonical": "청량리",
+    "code": "NAT130126",
+    "city_code": "11",
+    "city_name": "서울특별시",
+    "source": "tago"
+  },
+  {
+    "canonical": "충주",
+    "code": "NAT050827",
+    "city_code": "33",
+    "city_name": "충청북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "판교(경기)",
+    "code": "NAT250007",
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
+  },
+  {
+    "canonical": "평창",
+    "code": "NATN10625",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
   },
   {
     "canonical": "포항",
     "code": "NAT8B0351",
-    "aliases": {
-      "en": [
-        "Pohang",
-        "Pohang Station"
-      ],
-      "ja": [
-        "浦項",
-        "浦項駅"
-      ],
-      "zh": [
-        "浦项",
-        "浦项站"
-      ]
-    }
+    "city_code": "37",
+    "city_name": "경상북도",
+    "source": "tago"
+  },
+  {
+    "canonical": "풍기",
+    "code": "NAT022053",
+    "city_code": "37",
+    "city_name": "경상북도",
+    "source": "tago"
   },
   {
     "canonical": "행신",
     "code": "NAT110147",
-    "aliases": {
-      "en": [
-        "Haengsin",
-        "Haengsin Station"
-      ],
-      "ja": [
-        "行신",
-        "行신駅"
-      ],
-      "zh": [
-        "行신",
-        "行신站"
-      ]
-    }
+    "city_code": "31",
+    "city_name": "경기도",
+    "source": "tago"
+  },
+  {
+    "canonical": "횡성",
+    "code": "NATN10230",
+    "city_code": "32",
+    "city_name": "강원도",
+    "source": "tago"
   }
 ]

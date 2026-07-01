@@ -1,34 +1,22 @@
 # MCP Tools Reference
 
-**Status:** Phase 1 scaffold — `get_today_kst`, `search_stations`, `search_trains`, `compare_ktx_srt` implemented (in-memory store; Postgres later).
+**Scope:** KTX and SRT timetables only.
 
-All tool **names and descriptions are English** (LLM routing).  
-Responses support `locale`: `en` | `ko` | `ja` | `zh`.
+**Implemented:** `get_today_kst`, `search_stations`, `search_trains`, `compare_ktx_srt`
 
-## Recommended call chain
+Tool names and descriptions are **English**. Response `summary` supports `locale`: `en` | `ko` | `ja` | `zh`.
 
-For one user question, prefer this sequence (6–7 tool calls):
+## Call chain
 
 ```
-get_today_kst
-  → search_stations (departure)
-  → search_stations (arrival)
-  → holiday_check          (if holiday / peak season)
-  → compare_ktx_srt        (or search_trains)
-  → plan_trip
-  → get_booking_links
+get_today_kst → search_stations (dep) → search_stations (arr) → compare_ktx_srt | search_trains
 ```
 
 ---
 
 ## `get_today_kst`
 
-Return today's date in Korea Standard Time. **Call before any date-sensitive query.**
-
-| | |
-|---|---|
-| **Input** | None |
-| **Output** | `date` (YYYYMMDD), `timezone`, `day_of_week`, `summary` |
+KST today before any date query.
 
 **Implemented:** Yes
 
@@ -36,127 +24,51 @@ Return today's date in Korea Standard Time. **Call before any date-sensitive que
 
 ## `search_stations`
 
-Resolve station name to TAGO station code. Accepts multilingual aliases.
+Match TAGO Korean `nodename` or `NAT...` nodeid.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `query` | string | Yes | e.g. `Seoul`, `서울`, `ソウル`, `首尔` |
-| `locale` | string | No | `en` \| `ko` \| `ja` \| `zh` (default `en`) |
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `query` | Yes | e.g. `서울`, `부산`, `NAT010000` |
+| `locale` | No | `summary` language |
 
-**Output:** `matches[]` with `station_name`, `station_code`, `note`
+**Catalog:** 70 KTX/SRT stations (`stations_i18n.json`)
 
-**Implemented:** Yes (static `stations_i18n.json`)
+**Implemented:** Yes
 
 ---
 
 ## `search_trains`
 
-Timetable for a route on a given date.
+KTX/SRT timetable for a route and date. Reads Postgres cache — no TAGO on request.
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `departure` | string | Yes | Station name or code |
-| `arrival` | string | Yes | Station name or code |
-| `date` | string | Yes | YYYYMMDD |
-| `time` | string | No | HHMM departure filter |
-| `train_type` | string | No | `KTX` \| `SRT` \| `ALL` (default `ALL`) |
-| `locale` | string | No | Response `summary` language |
+| Parameter | Required | Description |
+|-----------|----------|-------------|
+| `departure` | Yes | Station name (Korean) or code |
+| `arrival` | Yes | Station name (Korean) or code |
+| `date` | Yes | YYYYMMDD |
+| `time` | No | HHMM — departures after this time |
+| `train_type` | No | `KTX` \| `SRT` \| `ALL` (default: both KTX and SRT) |
+| `locale` | No | `summary` language |
 
-**Output:** `trains[]` with `departure_time`, `arrival_time`, `train_type`, `train_no`
+**Not provided:** seats, fares, booking, ITX or other train types
 
-**Does not provide:** seat availability, fares, booking
-
-**Implemented:** Yes (in-memory timetable store; sync via `POST /internal/sync`)
+**Implemented:** Yes
 
 ---
 
 ## `compare_ktx_srt`
 
-Same route split into KTX vs SRT options.
+KTX vs SRT on the same route and date.
 
-| Parameter | Same as `search_trains` |
-|-----------|-------------------------|
-
-**Output:** `ktx_options[]`, `srt_options[]`, `recommendation_summary`
-
-**Implemented:** Yes (Phase 1 scaffold)
+**Implemented:** Yes
 
 ---
 
-## `holiday_check`
+## HTTP (hosted)
 
-Check if a date is a Korean public holiday or weekend.
+| Method | Path | Auth |
+|--------|------|------|
+| `GET` | `/health` | None |
+| `POST` | `/internal/sync` | `X-Sync-Secret` |
 
-| Parameter | Type | Required |
-|-----------|------|----------|
-| `date` | string (YYYYMMDD) | Yes |
-
-**Output:** `is_holiday`, `is_weekend`, `holiday_name`
-
-**Implemented:** Planned (Phase 2)
-
----
-
-## `get_booking_links`
-
-Official booking links only — no scraping, no proxy booking.
-
-| Parameter | Type | Required |
-|-----------|------|----------|
-| `departure` | string | No |
-| `arrival` | string | No |
-| `date` | string | No |
-
-**Output:** `korail_talk`, `korail_web`, `srt`, `note`
-
-**Implemented:** Planned (Phase 2)
-
----
-
-## `plan_trip`
-
-Multilingual trip summary in one call (may invoke other tools internally).
-
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `departure` | string | Yes | Origin station |
-| `arrival` | string | Yes | Destination station |
-| `date` | string | Yes | YYYYMMDD |
-| `preference` | string | No | `earliest` \| `latest` \| `fewest_transfers` |
-| `locale` | string | No | `en` \| `ko` \| `ja` \| `zh` |
-
-**Output:** `summary`, structured `trains`, booking hints
-
-**Implemented:** Planned (Phase 2)
-
----
-
-## Common response fields
-
-Every tool response includes:
-
-| Field | Description |
-|-------|-------------|
-| `data_source` | `"tago"` |
-| `attribution` | TAGO source string |
-| `as_of` | ISO8601 KST timestamp |
-| `disclaimer` | Short legal disclaimer |
-| `summary` | One-sentence LLM-friendly summary |
-
-## Error codes
-
-| Code | Meaning |
-|------|---------|
-| `STATION_NOT_FOUND` | Run `search_stations` first |
-| `NO_TRAINS` | No trains on that date/route |
-| `TAGO_API_ERROR` | Upstream failure — retry |
-| `RATE_LIMIT` | Daily quota exceeded |
-| `INVALID_DATE` | Bad or past date — use `get_today_kst` |
-
-## v1.1 (planned)
-
-| Tool | Description |
-|------|-------------|
-| `search_trains_morning` | Departures 05:00–12:00 |
-| `search_trains_afternoon` | Departures 12:00–18:00 |
-| `search_trains_evening` | Departures 18:00–24:00 |
+Sync: 73 KTX adjacent segments × today/tomorrow (KST), **KTX/SRT rows only**.

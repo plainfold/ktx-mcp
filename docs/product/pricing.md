@@ -1,65 +1,29 @@
 # Pricing
 
-Low entry price. Revenue from **MCP tool call volume** — not from TAGO upstream (server absorbs TAGO via cache).
+Revenue from **MCP tool call volume**. TAGO upstream is server-side cache (see [traffic.md](../engineering/traffic.md)).
 
-## Default: keyless hosted
+## Hosted (keyless)
 
-Users connect to a hosted URL. **No data.go.kr account or API key.**
-
-See [traffic.md](../engineering/traffic.md) for how the server stretches the shared TAGO 10k/day budget.
+Users connect to a URL — **no data.go.kr key**.
 
 ## Tiers
 
-| Tier | Price | Daily tool calls | Notes |
-|------|-------|------------------|-------|
-| **OSS (BYOK)** | Free | Unlimited* | Self-host only — **developers** |
-| **Hosting Free** | Free | 500 | All 7 tools included |
-| **Hosting Plus** | **$3/month** | 5,000 | Email support |
-| **Overage** | **$0.50 / 1,000 calls** | — | Plus subscribers only |
+| Tier | Price | Daily MCP calls |
+|------|-------|-----------------|
+| **OSS (BYOK)** | Free | Unlimited* (self-host) |
+| **Hosting Free** | Free | 500 |
+| **Hosting Plus** | $3/month | 5,000 |
+| **Overage** | $0.50 / 1,000 calls | Plus only |
 
-## Two meters
+\* BYOK uses your own TAGO 10k/day quota.
 
-| Meter | Free tier | Plus | Who pays TAGO |
-|-------|-----------|------|---------------|
-| **MCP tool calls** | 500/day | 5,000/day | — (our product limit) |
-| **TAGO upstream** | — | — | **Server** (one shared key + cache) |
+## Included tools (KTX/SRT)
 
-\* BYOK: user's own TAGO 10k/day — not the hosted pool.
+- `get_today_kst`
+- `search_stations`
+- `search_trains`
+- `compare_ktx_srt`
 
-## One-time products
+Multilingual `summary`: `en`, `ko`, `ja`, `zh`.
 
-| Product | Price | Contents |
-|---------|-------|----------|
-| **Gumroad Skill pack** | $2 | `ktx-trip-research` skill + `mcp.json` + prompts |
-| **Ko-fi** | $1+ | Tip / support |
-
-## What's included in every tier
-
-- All v1.0 tools (`get_today_kst` through `plan_trip`)
-- Multilingual responses (`en`, `ko`, `ja`, `zh`)
-- Official booking links (no proxy booking)
-
-## Revenue model
-
-```
-Free hosting (500 calls/day)
-    → power users hit 80% limit
-    → upsell Plus $3/mo
-    → overage at $0.50/1k calls
-    → affiliate clicks on get_booking_links
-```
-
-## Conservative monthly scenarios
-
-| Monthly tool calls | Plus subs | Overage | Est. revenue |
-|--------------------|-----------|---------|--------------|
-| 10,000 | 2 | $0 | ~$6 |
-| 50,000 | 15 | $5 | ~$50 |
-| 200,000 | 50 | $40 | ~$190 |
-
-## Not in v1
-
-- ~~Solo $9 / Trip $29~~ (deprecated)
-- B2B API ($199+) — Phase 5+ if demand exists
-
-See [spec.md §11](../planning/spec.md) for full commercial matrix.
+See [spec.md](../planning/spec.md) for product scope.

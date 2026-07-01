@@ -1,11 +1,11 @@
 # Deploy: Fly.io + Supabase
 
-Official hosted stack. **You already have both accounts** — no Railway required.
+Official hosted stack.
 
 | Service | Role |
 |---------|------|
-| **Supabase** | Postgres (`train_departures`), pg_cron → sync trigger, Vault (secrets) |
-| **Fly.io** | Python app: MCP HTTP + `/internal/sync` worker endpoint |
+| **Supabase** | Postgres (`train_departures`), optional `pg_cron` → sync trigger |
+| **Fly.io** | MCP HTTP (`/mcp`) + sync worker (`POST /internal/sync`) |
 
 Users connect to Fly — **no data.go.kr key**, no Supabase credentials.
 
@@ -19,85 +19,57 @@ User (Cursor / ChatGPT)
          → SELECT Supabase Postgres (pooler)
          ← timetable rows
 
-Supabase pg_cron (every 30 min)
+pg_cron or manual trigger (every 30 min recommended)
     → POST https://ktx-mcp.fly.dev/internal/sync
+         Header: X-Sync-Secret: <secret>
          → TAGO API (server key only)
-         → UPSERT Supabase Postgres
+         → UPSERT Postgres (73 KTX adjacent routes × 2 days)
 ```
 
-**Fly region:** `nrt` (Tokyo) — low latency to TAGO / Korean users.
+**Fly region:** `nrt` (Tokyo).
 
 ---
 
-## 1. Supabase setup
+## Prerequisites
 
-### 1.1 Run migration
-
-From repo root (with [Supabase CLI](https://supabase.com/docs/guides/cli)):
-
-```bash
-supabase link --project-ref YOUR_PROJECT_REF
-supabase db push
-```
-
-Or paste SQL from `supabase/migrations/001_train_departures.sql` into the SQL Editor.
-
-### 1.2 Secrets (Vault)
-
-Store in Supabase Vault or project secrets (for pg_cron HTTP):
-
-| Secret | Value |
-|--------|-------|
-| `fly_sync_url` | `https://ktx-mcp.fly.dev/internal/sync` |
-| `sync_secret` | Random string — same as Fly `SYNC_SECRET` |
-
-### 1.3 Schedule sync (pg_cron + pg_net)
-
-Enable extensions: `pg_cron`, `pg_net`.
-
-```sql
--- Every 30 minutes: trigger Fly sync worker
-SELECT cron.schedule(
-  'tago-sync-hot-routes',
-  '*/30 * * * *',
-  $$
-  SELECT net.http_post(
-    url := 'https://ktx-mcp.fly.dev/internal/sync',
-    headers := jsonb_build_object(
-      'Content-Type', 'application/json',
-      'Authorization', 'Bearer YOUR_SYNC_SECRET'
-    ),
-    body := jsonb_build_object('mode', 'hot'),
-    timeout_milliseconds := 120000
-  );
-  $$
-);
-```
-
-See [Supabase schedule functions](https://supabase.com/docs/guides/functions/schedule-functions).
-
-### 1.4 Connection strings for Fly
-
-In Supabase → Project Settings → Database:
-
-| Variable | Use |
-|----------|-----|
-| `DATABASE_URL` | **Transaction pooler** (port 6543) — MCP reads |
-| `SUPABASE_SERVICE_ROLE_KEY` | Optional admin tasks |
-
-Set as Fly secrets (never in git).
+- [Fly.io](https://fly.io) account + CLI (`fly auth login`)
+- [Supabase](https://supabase.com) project
+- [data.go.kr](https://www.data.go.kr) TAGO key ([15098552](https://www.data.go.kr/data/15098552/openapi.do)) — **server only**, never exposed to MCP clients
 
 ---
 
-## 2. Fly.io setup
+## 1. Supabase
 
-### 2.1 Install CLI
+### 1.1 Migration
 
 ```bash
-fly auth login
+python scripts/db_setup.py --migrate
+python scripts/db_setup.py
 ```
 
-### 2.2 Create app (first time)
+Or paste `supabase/migrations/001_train_departures.sql` into the SQL Editor.
+
+### 1.2 Connection string for Fly
+
+| Variable | Supabase dashboard | Use on Fly |
+|----------|-------------------|------------|
+| `DATABASE_URL` | **Transaction pooler** `*.pooler.supabase.com:6543` | MCP reads + sync writes |
+
+Local Windows dev: **Session pooler** `:5432` if direct `db.*` host fails (IPv6).
+
+### 1.3 Seed sync route metadata (optional)
+
+```bash
+python scripts/seed_sync_routes.py
+```
+
+Populates `sync_routes` table (73 Korail KTX segments). The sync worker uses the in-repo route list; this table is for ops/dashboard later.
+
+---
+
+## 2. Fly.io
+
+### 2.1 Create app (first time)
 
 ```bash
 fly apps create ktx-mcp
@@ -108,46 +80,93 @@ fly secrets set \
   KTX_MCP_TRANSPORT=http
 ```
 
-### 2.3 Deploy
+`KTX_MCP_TRANSPORT` and `KTX_MCP_PORT` are also set in `fly.toml` `[env]`.
+
+### 2.2 Deploy
 
 ```bash
 fly deploy
 ```
 
-### 2.4 Verify
+### 2.3 Verify
 
 ```bash
-fly status
-fly logs
 curl https://ktx-mcp.fly.dev/health
 ```
 
-### 2.5 Custom domain (optional)
+Expected (with DB configured):
 
-```bash
-fly certs add mcp.yourdomain.com
+```json
+{"status":"ok","store":"postgres","row_count":0,"transport":"http","database":"connected"}
 ```
 
-Update Cursor `mcp.json` with the public URL.
+### 2.4 Initial data sync
+
+```bash
+curl -X POST https://ktx-mcp.fly.dev/internal/sync \
+  -H "Content-Type: application/json" \
+  -H "X-Sync-Secret: YOUR_SYNC_SECRET"
+```
+
+Or from your machine (with `.env`):
+
+```bash
+python scripts/run_sync.py
+```
+
+Re-check `/health` — `row_count` should be > 0 after a successful sync (~73 routes × 2 days).
+
+### 2.5 Logs
+
+```bash
+fly logs
+fly status
+```
 
 ---
 
-## 3. Environment variables (Fly)
+## 3. Scheduled sync (pg_cron + pg_net)
+
+Enable extensions: `pg_cron`, `pg_net`.
+
+```sql
+SELECT cron.schedule(
+  'ktx-mcp-tago-sync',
+  '*/30 * * * *',
+  $$
+  SELECT net.http_post(
+    url := 'https://ktx-mcp.fly.dev/internal/sync',
+    headers := jsonb_build_object(
+      'Content-Type', 'application/json',
+      'X-Sync-Secret', 'YOUR_SYNC_SECRET'
+    ),
+    body := '{}'::jsonb,
+    timeout_milliseconds := 300000
+  );
+  $$
+);
+```
+
+**TAGO budget:** 73 routes × 2 dates ≈ **146 calls** per full sync. At 30 min intervals ≈ 7k calls/day — within the 10k dev key limit.
+
+---
+
+## 4. Environment variables (Fly secrets)
 
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `DATABASE_URL` | Yes | Supabase pooler URL |
-| `DATA_GO_KR_SERVICE_KEY` | Yes | TAGO key — **sync only** |
-| `SYNC_SECRET` | Yes | Protects `/internal/sync` |
+| `DATABASE_URL` | Yes | Supabase transaction pooler URL |
+| `DATA_GO_KR_SERVICE_KEY` | Yes | TAGO Decoding key — sync worker only |
+| `SYNC_SECRET` | Yes | `X-Sync-Secret` header for `/internal/sync` |
 | `KTX_MCP_TRANSPORT` | Yes | `http` on Fly |
-| `KTX_MCP_PORT` | No | `8080` (fly.toml internal_port) |
+| `KTX_MCP_PORT` | No | `8080` (matches `fly.toml`) |
 | `KTX_MCP_DEFAULT_LOCALE` | No | `en` |
 
-**Not on Fly (users):** no client TAGO key.
+Copy template: [env.template](env.template)
 
 ---
 
-## 4. MCP client config (keyless)
+## 5. MCP client (keyless)
 
 ```json
 {
@@ -161,35 +180,33 @@ Update Cursor `mcp.json` with the public URL.
 
 ---
 
-## 5. Cost estimate
+## 6. Cost estimate
 
 | Service | MVP |
 |---------|-----|
-| Supabase Free | $0 (500 MB DB enough) |
-| Fly.io | ~$5–10/mo (shared-cpu-1x, `nrt`) |
-| **Total** | **~$5–10/mo** |
-
-Skip Redis until Postgres read latency matters.
+| Supabase Free | $0 |
+| Fly.io shared-cpu-1x (`nrt`) | ~$5–10/mo |
 
 ---
 
-## 6. Local dev with same stack
+## 7. Local dev (same stack)
 
 ```bash
-cp .env.example .env
-# DATABASE_URL = Supabase local or remote pooler
+cp docs/getting-started/env.template .env
+# Edit .env with your keys
 pip install -e ".[dev]"
+python scripts/db_setup.py --migrate
 KTX_MCP_TRANSPORT=http ktx-mcp
 ```
 
 ---
 
-## Checklist
+## Deploy checklist
 
-- [ ] Supabase migration applied
-- [ ] pg_cron job scheduled
-- [ ] Fly app deployed (`nrt`)
-- [ ] Secrets set on Fly
-- [ ] `/health` returns 200
-- [ ] Manual `POST /internal/sync` fills `train_departures`
+- [ ] `001_train_departures.sql` applied
+- [ ] Fly secrets set (`DATABASE_URL`, `DATA_GO_KR_SERVICE_KEY`, `SYNC_SECRET`)
+- [ ] `fly deploy` succeeds
+- [ ] `GET /health` → `status: ok`, `database: connected`
+- [ ] `POST /internal/sync` with `X-Sync-Secret` → `rows_upserted` > 0
+- [ ] pg_cron job scheduled (or manual sync before demos)
 - [ ] Cursor connects to `/mcp` without user API key

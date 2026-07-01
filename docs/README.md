@@ -13,7 +13,7 @@
 | 문서 | 설명 |
 |------|------|
 | [deploy.md](getting-started/deploy.md) | **Fly.io + Supabase** 배포 (키 없는 호스팅) |
-| [setup.md](getting-started/setup.md) | 로컬 BYOK 개발자 설치 |
+| [setup.md](getting-started/setup.md) | 로컬 BYOK · [env.template](getting-started/env.template) |
 
 ---
 

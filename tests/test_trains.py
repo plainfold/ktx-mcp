@@ -14,8 +14,8 @@ def store() -> InMemoryTimetableStore:
 async def test_search_trains_empty_store(store: InMemoryTimetableStore):
     payload = await search_trains_payload(
         store,
-        departure="Seoul",
-        arrival="Busan",
+        departure="서울",
+        arrival="부산",
         date="20260701",
         locale="en",
     )
@@ -41,8 +41,8 @@ async def test_search_trains_reads_store(store: InMemoryTimetableStore):
     )
     payload = await search_trains_payload(
         store,
-        departure="Seoul",
-        arrival="Busan",
+        departure="서울",
+        arrival="부산",
         date="20260701",
         train_type="KTX",
         locale="en",
@@ -50,6 +50,43 @@ async def test_search_trains_reads_store(store: InMemoryTimetableStore):
     assert payload["error"] is None
     assert len(payload["trains"]) == 1
     assert payload["trains"][0]["train_no"] == "101"
+
+
+@pytest.mark.asyncio
+async def test_search_trains_all_excludes_itx(store: InMemoryTimetableStore):
+    await store.upsert_many(
+        [
+            TrainDeparture(
+                dep_code="NAT010000",
+                arr_code="NAT014445",
+                travel_date="20260701",
+                dep_time="0500",
+                arr_time="0730",
+                train_type="KTX",
+                train_no="101",
+            ),
+            TrainDeparture(
+                dep_code="NAT010000",
+                arr_code="NAT014445",
+                travel_date="20260701",
+                dep_time="0600",
+                arr_time="0800",
+                train_type="ITX-청춘",
+                train_no="999",
+            ),
+        ]
+    )
+    payload = await search_trains_payload(
+        store,
+        departure="서울",
+        arrival="부산",
+        date="20260701",
+        train_type="ALL",
+        locale="en",
+    )
+    assert payload["error"] is None
+    assert len(payload["trains"]) == 1
+    assert payload["trains"][0]["train_type"] == "KTX"
 
 
 @pytest.mark.asyncio
@@ -78,8 +115,8 @@ async def test_compare_ktx_srt(store: InMemoryTimetableStore):
     )
     payload = await compare_ktx_srt_payload(
         store,
-        departure="Seoul",
-        arrival="Busan",
+        departure="서울",
+        arrival="부산",
         date="20260701",
         locale="en",
     )

@@ -133,7 +133,9 @@ def parse_stations(payload: dict[str, Any]) -> list[dict[str, str]]:
     return rows
 
 
-def fetch_all_cities(service_key: str, *, client: httpx.Client | None = None) -> list[dict[str, str]]:
+def fetch_all_cities(
+    service_key: str, *, client: httpx.Client | None = None
+) -> list[dict[str, str]]:
     page = 1
     rows: list[dict[str, str]] = []
     while True:

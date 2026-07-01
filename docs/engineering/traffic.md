@@ -1,5 +1,9 @@
 # Traffic Strategy (P0)
 
+## Scope
+
+KTX and SRT timetables only. Sync stores **KTX/SRT rows**; ITX and other train types are dropped at ingest.
+
 **Top priority:** run **keyless hosted MCP** for global users while staying under the TAGO **10,000 calls/day** ceiling (development key), then scale via operations + cache — not by asking foreigners to sign up at [data.go.kr](https://www.data.go.kr).
 
 ## Two meters (do not confuse)
@@ -68,7 +72,7 @@ CREATE TABLE train_departures (
   travel_date TEXT NOT NULL,  -- YYYYMMDD
   dep_time    TEXT NOT NULL,  -- HH:MM
   arr_time    TEXT NOT NULL,
-  train_type  TEXT NOT NULL,  -- KTX, SRT, ITX, ...
+  train_type  TEXT NOT NULL,  -- KTX, SRT
   train_no    TEXT,
   duration_min INT,
   fetched_at  TIMESTAMPTZ NOT NULL,
@@ -101,7 +105,7 @@ DB 동기화·호스팅: [compliance.md](../legal/compliance.md). 응답에 `fet
 |-----|-----|
 | TAGO decoupled from user spikes | Staleness up to sync interval (30 min OK for timetables) |
 | Predictable cost | Must maintain sync worker + DB |
-| `compare` / `plan_trip` free | Long-tail routes need on-demand sync or wider pre-sync list |
+| `compare_ktx_srt` free | Long-tail routes need on-demand sync or wider pre-sync list |
 | Survives Redis flush | DB is source of truth |
 
 **MVP:** SQLite + in-process sync (no Redis yet) → add Redis + Postgres when hosting multi-instance.
@@ -133,17 +137,14 @@ Server holds **one** TAGO service key. All users share the **10k/day** pool unti
 
 ## Naive vs optimized (1 user question)
 
-Skill SOP triggers **6–7 MCP tool calls**. TAGO cost depends on implementation:
+Skill SOP triggers **4 MCP tool calls**. TAGO cost depends on implementation:
 
 | Tool | TAGO calls (naive) | TAGO calls (optimized) |
 |------|-------------------|------------------------|
 | `get_today_kst` | 0 | 0 |
-| `search_stations` ×2 | 0–2 | **0** (static `stations_i18n.json`) |
-| `holiday_check` | 0* | 0* (*separate 공휴일 API, not TAGO train) |
-| `search_trains` | 1 | 0–1 (cache hit = 0) |
-| `compare_ktx_srt` | 2 | **0–1** (one fetch, split in memory) |
-| `plan_trip` | +1 internal | **0** (reuse same request cache) |
-| `get_booking_links` | 0 | 0 |
+| `search_stations` ×2 | 0 | **0** (static catalog) |
+| `search_trains` | 1 | **0** (DB read) |
+| `compare_ktx_srt` | 2 | **0** (DB read, split KTX/SRT) |
 
 | Scenario | TAGO / question | Questions / day @ 10k TAGO |
 |----------|-----------------|----------------------------|
@@ -157,9 +158,8 @@ Skill SOP triggers **6–7 MCP tool calls**. TAGO cost depends on implementation
 
 ### L1 — Zero-TAGO tools (Week 1)
 
-- `search_stations` → **only** `stations_i18n.json` + TAGO city list synced **daily** (1 TAGO job, not per user)
-- `get_today_kst`, `get_booking_links` → no upstream
-- `holiday_check` → 천문연 공휴일 API (separate quota)
+- `search_stations` → **only** `stations_i18n.json` (0 TAGO per user)
+- `get_today_kst` → no upstream
 
 ### L2 — `TagoGateway` single entry (Week 1)
 
@@ -169,9 +169,7 @@ All train timetable reads go through one module:
 tools → TagoGateway.get_trains(dep, arr, date) → cache → HTTP
 ```
 
-- `search_trains` and `compare_ktx_srt` **must not** call TAGO separately for the same `(dep, arr, date)`.
-- `compare_ktx_srt` = one TAGO response, partition KTX vs SRT in Python.
-- `plan_trip` = read from **request-scoped cache** only.
+- `search_trains` and `compare_ktx_srt` read **Postgres only** on the request path (sync worker calls TAGO).
 
 ### L3 — TTL cache (Week 1–2)
 
@@ -179,8 +177,7 @@ tools → TagoGateway.get_trains(dep, arr, date) → cache → HTTP
 |-----------|-----|-------|
 | `trains:{dep_code}:{arr_code}:{date}` | **15 min** default | Timetables rarely change minute-to-minute |
 | `trains:...` (top-20 routes) | **30 min** | Seoul–Busan, Suseo–Busan, etc. |
-| `stations:manifest` | **24 h** | Background refresh, not user-triggered |
-| `holiday:{year}` | **7 d** | |
+| `stations:manifest` | **24 h** | Background refresh via `build_stations.py`, not per user |
 
 Hosted: **Redis** (shared across instances).  
 Local dev: in-memory LRU.

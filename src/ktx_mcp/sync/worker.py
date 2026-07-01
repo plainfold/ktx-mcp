@@ -5,16 +5,10 @@ from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 from ktx_mcp.adapters.tago import TagoGateway
+from ktx_mcp.data.korail_lines_loader import DEFAULT_SYNC_ROUTES
 from ktx_mcp.store.timetable import TimetableStore
 
 KST = ZoneInfo("Asia/Seoul")
-
-DEFAULT_SYNC_ROUTES: list[tuple[str, str, str]] = [
-    ("NAT010000", "NAT014445", "Seoul-Busan"),
-    ("NATH30000", "NAT014445", "Suseo-Busan"),
-    ("NAT010000", "NAT013271", "Seoul-Dongdaegu"),
-    ("NAT011668", "NAT013271", "Daejeon-Dongdaegu"),
-]
 
 
 @dataclass(slots=True)

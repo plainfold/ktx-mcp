@@ -1,0 +1,1623 @@
+{
+  "_meta": {
+    "source": "data.go.kr/15127571",
+    "dataset": "한국철도공사_KTX 노선별 역정보",
+    "note": "Line order from Korail file; nodeid from TAGO at build time."
+  },
+  "lines": {
+    "경부선": [
+      {
+        "station_name": "행신",
+        "order": 1,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 고양시 덕양구 소원로 102",
+        "nodeid": "NAT110147",
+        "tago_nodename": "행신"
+      },
+      {
+        "station_name": "서울",
+        "order": 2,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 405",
+        "nodeid": "NAT010000",
+        "tago_nodename": "서울"
+      },
+      {
+        "station_name": "영등포",
+        "order": 3,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 영등포구 경인로 846",
+        "nodeid": "NAT010091",
+        "tago_nodename": "영등포"
+      },
+      {
+        "station_name": "광명",
+        "order": 4,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 광명시 광명역로 21",
+        "nodeid": "NATH10219",
+        "tago_nodename": "광명"
+      },
+      {
+        "station_name": "수원",
+        "order": 5,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 수원시 팔달구 덕영대로 924",
+        "nodeid": "NAT010415",
+        "tago_nodename": "수원"
+      },
+      {
+        "station_name": "천안아산",
+        "order": 6,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 아산시 배방읍 희망로 100",
+        "nodeid": "NATH10960",
+        "tago_nodename": "천안아산"
+      },
+      {
+        "station_name": "오송",
+        "order": 7,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 청주시 흥덕구 오송읍 오송가락로 123",
+        "nodeid": "NAT050044",
+        "tago_nodename": "오송"
+      },
+      {
+        "station_name": "대전",
+        "order": 8,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대전 동구 중앙로 215",
+        "nodeid": "NAT011668",
+        "tago_nodename": "대전"
+      },
+      {
+        "station_name": "김천구미",
+        "order": 9,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 김천시 남면 혁신 1로 51",
+        "nodeid": "NATH12383",
+        "tago_nodename": "김천구미"
+      },
+      {
+        "station_name": "서대구",
+        "order": 10,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대구시 서구 와룡로 527",
+        "nodeid": "NAT013189",
+        "tago_nodename": "서대구"
+      },
+      {
+        "station_name": "동대구",
+        "order": 11,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대구 동구 동대구로 550",
+        "nodeid": "NAT013271",
+        "tago_nodename": "동대구"
+      },
+      {
+        "station_name": "포항",
+        "order": 12,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 포항시 흥해읍 포항역로1",
+        "nodeid": "NAT8B0351",
+        "tago_nodename": "포항"
+      },
+      {
+        "station_name": "경주",
+        "order": 13,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 경주시 건천읍 경주역로 80",
+        "nodeid": "NATH13421",
+        "tago_nodename": "경주"
+      },
+      {
+        "station_name": "울산(통도사)",
+        "order": 14,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "울산 울주군 삼남면 울산역로 177",
+        "nodeid": "NATH13717",
+        "tago_nodename": "울산",
+        "korail_name": "울산(통도사)"
+      },
+      {
+        "station_name": "경산",
+        "order": 15,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 경산시 중앙로 1",
+        "nodeid": "NAT013395",
+        "tago_nodename": "경산"
+      },
+      {
+        "station_name": "밀양",
+        "order": 16,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 밀양시 중앙로 62",
+        "nodeid": "NAT013841",
+        "tago_nodename": "밀양"
+      },
+      {
+        "station_name": "물금",
+        "order": 17,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 양산시 물금읍 황산로 347",
+        "nodeid": "NAT014150",
+        "tago_nodename": "물금"
+      },
+      {
+        "station_name": "구포",
+        "order": 18,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "부산 북구 구포만세길 82",
+        "nodeid": "NAT014281",
+        "tago_nodename": "구포"
+      },
+      {
+        "station_name": "부산",
+        "order": 19,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "부산시 동구 중앙대로 206",
+        "nodeid": "NAT014445",
+        "tago_nodename": "부산"
+      }
+    ],
+    "호남선": [
+      {
+        "station_name": "행신",
+        "order": 1,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 고양시 덕양구 소원로 102",
+        "nodeid": "NAT110147",
+        "tago_nodename": "행신"
+      },
+      {
+        "station_name": "서울",
+        "order": 2,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 405",
+        "nodeid": "NAT010000",
+        "tago_nodename": "서울"
+      },
+      {
+        "station_name": "용산",
+        "order": 3,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 23길 55",
+        "nodeid": "NAT010032",
+        "tago_nodename": "용산"
+      },
+      {
+        "station_name": "광명",
+        "order": 4,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 광명시 광명역로 21",
+        "nodeid": "NATH10219",
+        "tago_nodename": "광명"
+      },
+      {
+        "station_name": "천안아산",
+        "order": 5,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 아산시 배방읍 희망로 100",
+        "nodeid": "NATH10960",
+        "tago_nodename": "천안아산"
+      },
+      {
+        "station_name": "오송",
+        "order": 6,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 청주시 흥덕구 오송읍 오송가락로 123",
+        "nodeid": "NAT050044",
+        "tago_nodename": "오송"
+      },
+      {
+        "station_name": "공주",
+        "order": 7,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 공주시 이인면 새빛로 100",
+        "nodeid": "NATH20438",
+        "tago_nodename": "공주"
+      },
+      {
+        "station_name": "서대전",
+        "order": 8,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대전 중구 오류로 23",
+        "nodeid": "NAT030057",
+        "tago_nodename": "서대전"
+      },
+      {
+        "station_name": "계룡",
+        "order": 9,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 계룡시 두마면 팥거리로 95",
+        "nodeid": "NAT030254",
+        "tago_nodename": "계룡"
+      },
+      {
+        "station_name": "논산",
+        "order": 10,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 논산시 해월로 236-13",
+        "nodeid": "NAT030508",
+        "tago_nodename": "논산"
+      },
+      {
+        "station_name": "익산",
+        "order": 11,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전북 익산시 익산대로 153",
+        "nodeid": "NAT030879",
+        "tago_nodename": "익산"
+      },
+      {
+        "station_name": "김제",
+        "order": 12,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전북 김제시 두월로 198",
+        "nodeid": "NAT031056",
+        "tago_nodename": "김제"
+      },
+      {
+        "station_name": "정읍",
+        "order": 13,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전북 정읍시 서부산업도로 305",
+        "nodeid": "NAT031314",
+        "tago_nodename": "정읍"
+      },
+      {
+        "station_name": "장성",
+        "order": 14,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 장성군 장성읍 영천리 1273-5",
+        "nodeid": "NAT031638",
+        "tago_nodename": "장성"
+      },
+      {
+        "station_name": "광주송정",
+        "order": 15,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "광주 광산구 상무대로 201",
+        "nodeid": "NAT031857",
+        "tago_nodename": "광주송정"
+      },
+      {
+        "station_name": "나주",
+        "order": 16,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 나주시 송월동 262-2",
+        "nodeid": "NAT031998",
+        "tago_nodename": "나주"
+      },
+      {
+        "station_name": "목포",
+        "order": 17,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 목포시 호남동 1-1",
+        "nodeid": "NAT032563",
+        "tago_nodename": "목포"
+      }
+    ],
+    "경전선": [
+      {
+        "station_name": "행신",
+        "order": 1,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 고양시 덕양구 소원로 114",
+        "nodeid": "NAT110147",
+        "tago_nodename": "행신"
+      },
+      {
+        "station_name": "서울",
+        "order": 2,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 405",
+        "nodeid": "NAT010000",
+        "tago_nodename": "서울"
+      },
+      {
+        "station_name": "광명",
+        "order": 3,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 광명시 광명역로 21",
+        "nodeid": "NATH10219",
+        "tago_nodename": "광명"
+      },
+      {
+        "station_name": "천안아산",
+        "order": 4,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 아산시 배방읍 희망로 100",
+        "nodeid": "NATH10960",
+        "tago_nodename": "천안아산"
+      },
+      {
+        "station_name": "오송",
+        "order": 5,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 청주시 흥덕구 오송읍 오송가락로 123",
+        "nodeid": "NAT050044",
+        "tago_nodename": "오송"
+      },
+      {
+        "station_name": "대전",
+        "order": 6,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대전 동구 중앙로 215",
+        "nodeid": "NAT011668",
+        "tago_nodename": "대전"
+      },
+      {
+        "station_name": "김천구미",
+        "order": 7,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 김천시 남면 혁신 1로 51",
+        "nodeid": "NATH12383",
+        "tago_nodename": "김천구미"
+      },
+      {
+        "station_name": "서대구",
+        "order": 8,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대구시 서구 와룡로 527",
+        "nodeid": "NAT013189",
+        "tago_nodename": "서대구"
+      },
+      {
+        "station_name": "동대구",
+        "order": 9,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대구 동구 동대구로 550",
+        "nodeid": "NAT013271",
+        "tago_nodename": "동대구"
+      },
+      {
+        "station_name": "경산",
+        "order": 10,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 경산시 중앙로 1",
+        "nodeid": "NAT013395",
+        "tago_nodename": "경산"
+      },
+      {
+        "station_name": "밀양",
+        "order": 11,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 밀양시 중앙로 62",
+        "nodeid": "NAT013841",
+        "tago_nodename": "밀양"
+      },
+      {
+        "station_name": "진영",
+        "order": 12,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 김해시 진영읍 김해대로 809",
+        "nodeid": "NAT880177",
+        "tago_nodename": "진영"
+      },
+      {
+        "station_name": "창원중앙",
+        "order": 13,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 창원시 의창구 상남로 381",
+        "nodeid": "NAT880281",
+        "tago_nodename": "창원중앙"
+      },
+      {
+        "station_name": "창원",
+        "order": 14,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 창원시 의창구 의창대로 67",
+        "nodeid": "NAT880310",
+        "tago_nodename": "창원"
+      },
+      {
+        "station_name": "마산",
+        "order": 15,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 창원시 마산회원구 마산역광장로 18",
+        "nodeid": "NAT880345",
+        "tago_nodename": "마산"
+      },
+      {
+        "station_name": "진주",
+        "order": 16,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경남 진주시 개양로 116번길 33",
+        "nodeid": "NAT881014",
+        "tago_nodename": "진주"
+      }
+    ],
+    "전라선": [
+      {
+        "station_name": "행신",
+        "order": 1,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 고양시 덕양구 소원로 114",
+        "nodeid": "NAT110147",
+        "tago_nodename": "행신"
+      },
+      {
+        "station_name": "서울",
+        "order": 2,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 405",
+        "nodeid": "NAT010000",
+        "tago_nodename": "서울"
+      },
+      {
+        "station_name": "용산",
+        "order": 3,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 23길 55",
+        "nodeid": "NAT010032",
+        "tago_nodename": "용산"
+      },
+      {
+        "station_name": "광명",
+        "order": 4,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 광명시 광명역로 21",
+        "nodeid": "NATH10219",
+        "tago_nodename": "광명"
+      },
+      {
+        "station_name": "천안아산",
+        "order": 5,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 아산시 배방읍 희망로 100",
+        "nodeid": "NATH10960",
+        "tago_nodename": "천안아산"
+      },
+      {
+        "station_name": "오송",
+        "order": 6,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 청주시 흥덕구 오송읍 오송가락로 123",
+        "nodeid": "NAT050044",
+        "tago_nodename": "오송"
+      },
+      {
+        "station_name": "공주",
+        "order": 7,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 공주시 이인면 새빛로 100",
+        "nodeid": "NATH20438",
+        "tago_nodename": "공주"
+      },
+      {
+        "station_name": "서대전",
+        "order": 8,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "대전 중구 오류로 23",
+        "nodeid": "NAT030057",
+        "tago_nodename": "서대전"
+      },
+      {
+        "station_name": "계룡",
+        "order": 9,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 계룡시 두마면 팥거리로 95",
+        "nodeid": "NAT030254",
+        "tago_nodename": "계룡"
+      },
+      {
+        "station_name": "논산",
+        "order": 10,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충남 논산시 해월로 236-13",
+        "nodeid": "NAT030508",
+        "tago_nodename": "논산"
+      },
+      {
+        "station_name": "익산",
+        "order": 11,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전북 익산시 익산대로 153",
+        "nodeid": "NAT030879",
+        "tago_nodename": "익산"
+      },
+      {
+        "station_name": "전주",
+        "order": 12,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전북 전주시 덕진구 동부대로 680",
+        "nodeid": "NAT040257",
+        "tago_nodename": "전주"
+      },
+      {
+        "station_name": "남원",
+        "order": 13,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전북 남원시 교룡로 71",
+        "nodeid": "NAT040868",
+        "tago_nodename": "남원"
+      },
+      {
+        "station_name": "곡성",
+        "order": 14,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 곡성군 곡성로 920",
+        "nodeid": "NAT041072",
+        "tago_nodename": "곡성"
+      },
+      {
+        "station_name": "구례구",
+        "order": 15,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 순천시 황전면 섬진강로 217",
+        "nodeid": "NAT041285",
+        "tago_nodename": "구례구"
+      },
+      {
+        "station_name": "순천",
+        "order": 16,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 순천시 팔마로 135",
+        "nodeid": "NAT041595",
+        "tago_nodename": "순천"
+      },
+      {
+        "station_name": "여천",
+        "order": 17,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 여수시 시청로 200",
+        "nodeid": "NAT041866",
+        "tago_nodename": "여천"
+      },
+      {
+        "station_name": "여수EXPO",
+        "order": 18,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "전남 여수시 망양로 2",
+        "nodeid": "NAT041993",
+        "tago_nodename": "여수EXPO"
+      }
+    ],
+    "강릉선": [
+      {
+        "station_name": "행신",
+        "order": 1,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 고양시 덕양구 소원로 102",
+        "nodeid": "NAT110147",
+        "tago_nodename": "행신"
+      },
+      {
+        "station_name": "서울",
+        "order": 2,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 405",
+        "nodeid": "NAT010000",
+        "tago_nodename": "서울"
+      },
+      {
+        "station_name": "청량리",
+        "order": 3,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울시 동대문구 왕산로-214",
+        "nodeid": "NAT130126",
+        "tago_nodename": "청량리"
+      },
+      {
+        "station_name": "상봉",
+        "order": 4,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울시 중랑구 망우로 297",
+        "nodeid": "NAT020040",
+        "tago_nodename": "상봉"
+      },
+      {
+        "station_name": "덕소",
+        "order": 5,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 남양주시 와부읍 덕소리 56",
+        "nodeid": "NAT020178",
+        "tago_nodename": "덕소"
+      },
+      {
+        "station_name": "양평",
+        "order": 6,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 양평군 양평읍 역전길 30",
+        "nodeid": "NAT020524",
+        "tago_nodename": "양평"
+      },
+      {
+        "station_name": "서원주",
+        "order": 7,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 원주시 지정면 지정로 145",
+        "nodeid": "NAT020864",
+        "tago_nodename": "서원주"
+      },
+      {
+        "station_name": "만종",
+        "order": 8,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 원주시 호저면 운동들2길 21-33",
+        "nodeid": "NAT021033",
+        "tago_nodename": "만종"
+      },
+      {
+        "station_name": "횡성",
+        "order": 9,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 횡성군 횡성읍 덕고로 591",
+        "nodeid": "NATN10230",
+        "tago_nodename": "횡성"
+      },
+      {
+        "station_name": "둔내",
+        "order": 10,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 횡성군 둔내면 고원로 116",
+        "nodeid": "NATN10428",
+        "tago_nodename": "둔내"
+      },
+      {
+        "station_name": "평창",
+        "order": 11,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 평창군 용평면 평창대로 1715",
+        "nodeid": "NATN10625",
+        "tago_nodename": "평창"
+      },
+      {
+        "station_name": "진부(오대산)",
+        "order": 12,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 평창군 진부면 송정길 120",
+        "nodeid": "NATN10787",
+        "tago_nodename": "진부",
+        "korail_name": "진부(오대산)"
+      },
+      {
+        "station_name": "강릉",
+        "order": 13,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 강릉시 용지로 176",
+        "nodeid": "NAT601936",
+        "tago_nodename": "강릉"
+      },
+      {
+        "station_name": "정동진",
+        "order": 14,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 강릉시 강동면 정동역길17",
+        "nodeid": "NAT601774",
+        "tago_nodename": "정동진"
+      },
+      {
+        "station_name": "묵호",
+        "order": 15,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원 동해시 해안로 520",
+        "nodeid": "NAT601545",
+        "tago_nodename": "묵호"
+      },
+      {
+        "station_name": "동해",
+        "order": 16,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원 동해시 동해역길 69",
+        "nodeid": "NAT601485",
+        "tago_nodename": "동해"
+      }
+    ],
+    "중앙선": [
+      {
+        "station_name": "서울",
+        "order": 1,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울특별시 용산구 한강대로 405",
+        "nodeid": "NAT010000",
+        "tago_nodename": "서울"
+      },
+      {
+        "station_name": "청량리",
+        "order": 2,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "서울시 동대문구 왕산로-214",
+        "nodeid": "NAT130126",
+        "tago_nodename": "청량리"
+      },
+      {
+        "station_name": "양평",
+        "order": 3,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 양평군 양평읍 역전길 30",
+        "nodeid": "NAT020524",
+        "tago_nodename": "양평"
+      },
+      {
+        "station_name": "서원주",
+        "order": 4,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 원주시 지정면 지정로 145",
+        "nodeid": "NAT020864",
+        "tago_nodename": "서원주"
+      },
+      {
+        "station_name": "원주",
+        "order": 5,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "강원도 원주시 북원로 1860",
+        "nodeid": "NAT020947",
+        "tago_nodename": "원주"
+      },
+      {
+        "station_name": "제천",
+        "order": 6,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 제천시 의림대로1",
+        "nodeid": "NAT021549",
+        "tago_nodename": "제천"
+      },
+      {
+        "station_name": "단양",
+        "order": 7,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 단양군 단양읍 단양로 896",
+        "nodeid": "NAT021784",
+        "tago_nodename": "단양"
+      },
+      {
+        "station_name": "풍기",
+        "order": 8,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 영주시 풍기읍 인삼로 1",
+        "nodeid": "NAT022053",
+        "tago_nodename": "풍기"
+      },
+      {
+        "station_name": "영주",
+        "order": 9,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 영주시 선비로 64",
+        "nodeid": "NAT022188",
+        "tago_nodename": "영주"
+      },
+      {
+        "station_name": "안동",
+        "order": 10,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경북 안동시 송현동 648",
+        "nodeid": "NAT022558",
+        "tago_nodename": "안동"
+      }
+    ],
+    "중부내륙선": [
+      {
+        "station_name": "판교(경기)",
+        "order": 1,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 성남시 분당구 판교역로 160",
+        "nodeid": "NAT250007",
+        "tago_nodename": "판교(경기)"
+      },
+      {
+        "station_name": "부발",
+        "order": 2,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 이천시 부발읍 신아로 87",
+        "nodeid": "NAT250428",
+        "tago_nodename": "부발"
+      },
+      {
+        "station_name": "가남",
+        "order": 3,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "경기도 여주시 가남읍 태평리 514",
+        "nodeid": "NAT280090",
+        "tago_nodename": "가남"
+      },
+      {
+        "station_name": "감곡장호원",
+        "order": 4,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 음성군 감곡면 왕장리 312-2",
+        "nodeid": "NAT280212",
+        "tago_nodename": "감곡장호원"
+      },
+      {
+        "station_name": "앙성온천",
+        "order": 5,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 충주시 앙성면 돈산리 317",
+        "nodeid": "NAT280358",
+        "tago_nodename": "앙성온천"
+      },
+      {
+        "station_name": "충주",
+        "order": 6,
+        "source": "korail_file_15127571",
+        "고속철도명": "KTX",
+        "철도운영기관": "한국철도공사",
+        "주소": "충북 충주시 충원대로 539",
+        "nodeid": "NAT050827",
+        "tago_nodename": "충주"
+      }
+    ]
+  },
+  "adjacent_routes": [
+    {
+      "dep_code": "NAT110147",
+      "arr_code": "NAT010000",
+      "dep_name": "행신",
+      "arr_name": "서울",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT010000",
+      "arr_code": "NAT010091",
+      "dep_name": "서울",
+      "arr_name": "영등포",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT010091",
+      "arr_code": "NATH10219",
+      "dep_name": "영등포",
+      "arr_name": "광명",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATH10219",
+      "arr_code": "NAT010415",
+      "dep_name": "광명",
+      "arr_name": "수원",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT010415",
+      "arr_code": "NATH10960",
+      "dep_name": "수원",
+      "arr_name": "천안아산",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATH10960",
+      "arr_code": "NAT050044",
+      "dep_name": "천안아산",
+      "arr_name": "오송",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT050044",
+      "arr_code": "NAT011668",
+      "dep_name": "오송",
+      "arr_name": "대전",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT011668",
+      "arr_code": "NATH12383",
+      "dep_name": "대전",
+      "arr_name": "김천구미",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATH12383",
+      "arr_code": "NAT013189",
+      "dep_name": "김천구미",
+      "arr_name": "서대구",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT013189",
+      "arr_code": "NAT013271",
+      "dep_name": "서대구",
+      "arr_name": "동대구",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT013271",
+      "arr_code": "NAT8B0351",
+      "dep_name": "동대구",
+      "arr_name": "포항",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT8B0351",
+      "arr_code": "NATH13421",
+      "dep_name": "포항",
+      "arr_name": "경주",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATH13421",
+      "arr_code": "NATH13717",
+      "dep_name": "경주",
+      "arr_name": "울산(통도사)",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATH13717",
+      "arr_code": "NAT013395",
+      "dep_name": "울산(통도사)",
+      "arr_name": "경산",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT013395",
+      "arr_code": "NAT013841",
+      "dep_name": "경산",
+      "arr_name": "밀양",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT013841",
+      "arr_code": "NAT014150",
+      "dep_name": "밀양",
+      "arr_name": "물금",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT014150",
+      "arr_code": "NAT014281",
+      "dep_name": "물금",
+      "arr_name": "구포",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT014281",
+      "arr_code": "NAT014445",
+      "dep_name": "구포",
+      "arr_name": "부산",
+      "line": "경부선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT010000",
+      "arr_code": "NAT010032",
+      "dep_name": "서울",
+      "arr_name": "용산",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT010032",
+      "arr_code": "NATH10219",
+      "dep_name": "용산",
+      "arr_name": "광명",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATH10219",
+      "arr_code": "NATH10960",
+      "dep_name": "광명",
+      "arr_name": "천안아산",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT050044",
+      "arr_code": "NATH20438",
+      "dep_name": "오송",
+      "arr_name": "공주",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATH20438",
+      "arr_code": "NAT030057",
+      "dep_name": "공주",
+      "arr_name": "서대전",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT030057",
+      "arr_code": "NAT030254",
+      "dep_name": "서대전",
+      "arr_name": "계룡",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT030254",
+      "arr_code": "NAT030508",
+      "dep_name": "계룡",
+      "arr_name": "논산",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT030508",
+      "arr_code": "NAT030879",
+      "dep_name": "논산",
+      "arr_name": "익산",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT030879",
+      "arr_code": "NAT031056",
+      "dep_name": "익산",
+      "arr_name": "김제",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT031056",
+      "arr_code": "NAT031314",
+      "dep_name": "김제",
+      "arr_name": "정읍",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT031314",
+      "arr_code": "NAT031638",
+      "dep_name": "정읍",
+      "arr_name": "장성",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT031638",
+      "arr_code": "NAT031857",
+      "dep_name": "장성",
+      "arr_name": "광주송정",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT031857",
+      "arr_code": "NAT031998",
+      "dep_name": "광주송정",
+      "arr_name": "나주",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT031998",
+      "arr_code": "NAT032563",
+      "dep_name": "나주",
+      "arr_name": "목포",
+      "line": "호남선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT010000",
+      "arr_code": "NATH10219",
+      "dep_name": "서울",
+      "arr_name": "광명",
+      "line": "경전선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT013271",
+      "arr_code": "NAT013395",
+      "dep_name": "동대구",
+      "arr_name": "경산",
+      "line": "경전선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT013841",
+      "arr_code": "NAT880177",
+      "dep_name": "밀양",
+      "arr_name": "진영",
+      "line": "경전선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT880177",
+      "arr_code": "NAT880281",
+      "dep_name": "진영",
+      "arr_name": "창원중앙",
+      "line": "경전선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT880281",
+      "arr_code": "NAT880310",
+      "dep_name": "창원중앙",
+      "arr_name": "창원",
+      "line": "경전선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT880310",
+      "arr_code": "NAT880345",
+      "dep_name": "창원",
+      "arr_name": "마산",
+      "line": "경전선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT880345",
+      "arr_code": "NAT881014",
+      "dep_name": "마산",
+      "arr_name": "진주",
+      "line": "경전선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT030879",
+      "arr_code": "NAT040257",
+      "dep_name": "익산",
+      "arr_name": "전주",
+      "line": "전라선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT040257",
+      "arr_code": "NAT040868",
+      "dep_name": "전주",
+      "arr_name": "남원",
+      "line": "전라선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT040868",
+      "arr_code": "NAT041072",
+      "dep_name": "남원",
+      "arr_name": "곡성",
+      "line": "전라선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT041072",
+      "arr_code": "NAT041285",
+      "dep_name": "곡성",
+      "arr_name": "구례구",
+      "line": "전라선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT041285",
+      "arr_code": "NAT041595",
+      "dep_name": "구례구",
+      "arr_name": "순천",
+      "line": "전라선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT041595",
+      "arr_code": "NAT041866",
+      "dep_name": "순천",
+      "arr_name": "여천",
+      "line": "전라선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT041866",
+      "arr_code": "NAT041993",
+      "dep_name": "여천",
+      "arr_name": "여수EXPO",
+      "line": "전라선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT010000",
+      "arr_code": "NAT130126",
+      "dep_name": "서울",
+      "arr_name": "청량리",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT130126",
+      "arr_code": "NAT020040",
+      "dep_name": "청량리",
+      "arr_name": "상봉",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT020040",
+      "arr_code": "NAT020178",
+      "dep_name": "상봉",
+      "arr_name": "덕소",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT020178",
+      "arr_code": "NAT020524",
+      "dep_name": "덕소",
+      "arr_name": "양평",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT020524",
+      "arr_code": "NAT020864",
+      "dep_name": "양평",
+      "arr_name": "서원주",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT020864",
+      "arr_code": "NAT021033",
+      "dep_name": "서원주",
+      "arr_name": "만종",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT021033",
+      "arr_code": "NATN10230",
+      "dep_name": "만종",
+      "arr_name": "횡성",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATN10230",
+      "arr_code": "NATN10428",
+      "dep_name": "횡성",
+      "arr_name": "둔내",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATN10428",
+      "arr_code": "NATN10625",
+      "dep_name": "둔내",
+      "arr_name": "평창",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATN10625",
+      "arr_code": "NATN10787",
+      "dep_name": "평창",
+      "arr_name": "진부(오대산)",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NATN10787",
+      "arr_code": "NAT601936",
+      "dep_name": "진부(오대산)",
+      "arr_name": "강릉",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT601936",
+      "arr_code": "NAT601774",
+      "dep_name": "강릉",
+      "arr_name": "정동진",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT601774",
+      "arr_code": "NAT601545",
+      "dep_name": "정동진",
+      "arr_name": "묵호",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT601545",
+      "arr_code": "NAT601485",
+      "dep_name": "묵호",
+      "arr_name": "동해",
+      "line": "강릉선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT130126",
+      "arr_code": "NAT020524",
+      "dep_name": "청량리",
+      "arr_name": "양평",
+      "line": "중앙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT020864",
+      "arr_code": "NAT020947",
+      "dep_name": "서원주",
+      "arr_name": "원주",
+      "line": "중앙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT020947",
+      "arr_code": "NAT021549",
+      "dep_name": "원주",
+      "arr_name": "제천",
+      "line": "중앙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT021549",
+      "arr_code": "NAT021784",
+      "dep_name": "제천",
+      "arr_name": "단양",
+      "line": "중앙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT021784",
+      "arr_code": "NAT022053",
+      "dep_name": "단양",
+      "arr_name": "풍기",
+      "line": "중앙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT022053",
+      "arr_code": "NAT022188",
+      "dep_name": "풍기",
+      "arr_name": "영주",
+      "line": "중앙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT022188",
+      "arr_code": "NAT022558",
+      "dep_name": "영주",
+      "arr_name": "안동",
+      "line": "중앙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT250007",
+      "arr_code": "NAT250428",
+      "dep_name": "판교(경기)",
+      "arr_name": "부발",
+      "line": "중부내륙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT250428",
+      "arr_code": "NAT280090",
+      "dep_name": "부발",
+      "arr_name": "가남",
+      "line": "중부내륙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT280090",
+      "arr_code": "NAT280212",
+      "dep_name": "가남",
+      "arr_name": "감곡장호원",
+      "line": "중부내륙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT280212",
+      "arr_code": "NAT280358",
+      "dep_name": "감곡장호원",
+      "arr_name": "앙성온천",
+      "line": "중부내륙선",
+      "source": "korail_file_15127571"
+    },
+    {
+      "dep_code": "NAT280358",
+      "arr_code": "NAT050827",
+      "dep_name": "앙성온천",
+      "arr_name": "충주",
+      "line": "중부내륙선",
+      "source": "korail_file_15127571"
+    }
+  ]
+}
