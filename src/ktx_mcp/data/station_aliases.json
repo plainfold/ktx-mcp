@@ -1,0 +1,159 @@
+{
+  "서울": {
+    "en": ["Seoul", "Seoul Station"],
+    "ja": ["ソウル", "ソウル駅"],
+    "zh": ["首尔", "首尔站"],
+    "note": "KTX main; separate from Suseo (SRT)"
+  },
+  "수서": {
+    "en": ["Suseo", "Suseo Station"],
+    "ja": ["水西", "水西駅"],
+    "zh": ["水西", "水西站"],
+    "note": "SRT and KTX"
+  },
+  "용산": {
+    "en": ["Yongsan", "Yongsan Station"],
+    "ja": ["龍山", "龍山駅"],
+    "zh": ["龙山", "龙山站"]
+  },
+  "영등포": {
+    "en": ["Yeongdeungpo", "Yeongdeungpo Station"],
+    "ja": ["永登浦", "永登浦駅"],
+    "zh": ["永登浦", "永登浦站"]
+  },
+  "광명": {
+    "en": ["Gwangmyeong", "Gwangmyeong Station"],
+    "ja": ["光明", "光明駅"],
+    "zh": ["光明", "光明站"]
+  },
+  "행신": {
+    "en": ["Haengsin", "Haengsin Station"],
+    "ja": ["行신", "行신駅"],
+    "zh": ["行신", "行신站"]
+  },
+  "평택지제": {
+    "tago_name": "평택",
+    "en": ["Pyeongtaek Jije", "Jije Station"],
+    "ja": ["平沢芝制", "芝制駅"],
+    "zh": ["平泽芝制", "芝制站"]
+  },
+  "천안아산": {
+    "en": ["Cheonan Asan", "Asan Cheonan Station"],
+    "ja": ["天安牙山", "天安牙山駅"],
+    "zh": ["天安牙山", "天安牙山站"]
+  },
+  "오송": {
+    "en": ["Osong"],
+    "ja": ["五松"],
+    "zh": ["五松"]
+  },
+  "대전": {
+    "en": ["Daejeon", "Daejeon Station"],
+    "ja": ["大田", "大田駅"],
+    "zh": ["大田", "大田站"]
+  },
+  "김천구미": {
+    "en": ["Gimcheon Gumi", "Gimcheon-Gumi Station"],
+    "ja": ["金泉龟尾", "金泉龟尾駅"],
+    "zh": ["金泉龟尾", "金泉龟尾站"]
+  },
+  "동대구": {
+    "en": ["Dongdaegu", "Dongdaegu Station"],
+    "ja": ["東大邱", "東大邱駅"],
+    "zh": ["东大邱", "东大邱站"]
+  },
+  "신경주": {
+    "tago_name": "경주",
+    "ko": ["경주"],
+    "en": ["Singyeongju", "Shin Gyeongju Station", "Gyeongju"],
+    "ja": ["新慶州", "新慶州駅"],
+    "zh": ["新庆州", "新庆州站"]
+  },
+  "울산(통도사)": {
+    "tago_name": "울산",
+    "ko": ["울산", "통도사"],
+    "en": ["Ulsan Tongdosa", "Ulsan Station"],
+    "ja": ["蔚山通度寺", "蔚山駅"],
+    "zh": ["蔚山通度寺", "蔚山站"]
+  },
+  "밀양": {
+    "en": ["Miryang", "Miryang Station"],
+    "ja": ["密陽", "密陽駅"],
+    "zh": ["密阳", "密阳站"]
+  },
+  "부산": {
+    "en": ["Busan", "Busan Station"],
+    "ja": ["釜山", "釜山駅"],
+    "zh": ["釜山", "釜山站"]
+  },
+  "익산": {
+    "en": ["Iksan", "Iksan Station"],
+    "ja": ["益山", "益山駅"],
+    "zh": ["益山", "益山站"]
+  },
+  "전주": {
+    "en": ["Jeonju", "Jeonju Station"],
+    "ja": ["全州", "全州駅"],
+    "zh": ["全州", "全州站"]
+  },
+  "정읍": {
+    "en": ["Jeongeup", "Jeongeup Station"],
+    "ja": ["井邑", "井邑駅"],
+    "zh": ["井邑", "井邑站"]
+  },
+  "광주송정": {
+    "en": ["Gwangju Songjeong", "Gwangju-Songjeong Station"],
+    "ja": ["光州松汀", "光州松汀駅"],
+    "zh": ["光州松汀", "光州松汀站"]
+  },
+  "나주": {
+    "en": ["Naju", "Naju Station"],
+    "ja": ["羅州", "羅州駅"],
+    "zh": ["罗州", "罗州站"]
+  },
+  "목포": {
+    "en": ["Mokpo", "Mokpo Station"],
+    "ja": ["木浦", "木浦駅"],
+    "zh": ["木浦", "木浦站"]
+  },
+  "순천": {
+    "en": ["Suncheon", "Suncheon Station"],
+    "ja": ["順天", "順天駅"],
+    "zh": ["顺天", "顺天站"]
+  },
+  "여수EXPO": {
+    "en": ["Yeosu Expo", "Yeosu Station"],
+    "ja": ["麗水EXPO", "麗水駅"],
+    "zh": ["丽水EXPO", "丽水站"]
+  },
+  "창원중앙": {
+    "en": ["Changwon Jungang", "Changwon Central Station"],
+    "ja": ["昌原中央", "昌原中央駅"],
+    "zh": ["昌原中央", "昌原中央站"]
+  },
+  "마산": {
+    "en": ["Masan", "Masan Station"],
+    "ja": ["馬山", "馬山駅"],
+    "zh": ["马山", "马山站"]
+  },
+  "진주": {
+    "en": ["Jinju", "Jinju Station"],
+    "ja": ["晋州", "晋州駅"],
+    "zh": ["晋州", "晋州站"]
+  },
+  "포항": {
+    "en": ["Pohang", "Pohang Station"],
+    "ja": ["浦項", "浦項駅"],
+    "zh": ["浦项", "浦项站"]
+  },
+  "강릉": {
+    "en": ["Gangneung", "Gangneung Station"],
+    "ja": ["江陵", "江陵駅"],
+    "zh": ["江陵", "江陵站"]
+  },
+  "서대전": {
+    "en": ["Seodaejeon", "West Daejeon Station"],
+    "ja": ["西大田", "西大田駅"],
+    "zh": ["西大田", "西大田站"]
+  }
+}

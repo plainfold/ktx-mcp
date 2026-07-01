@@ -1,0 +1,14 @@
+{
+  "response": {
+    "header": { "resultCode": "00", "resultMsg": "OK" },
+    "body": {
+      "items": {
+        "item": [
+            { "nodeid": "NAT010000", "nodename": "서울" },
+          { "nodeid": "NATH30000", "nodename": "수서" }
+        ]
+      },
+      "totalCount": 2
+    }
+  }
+}

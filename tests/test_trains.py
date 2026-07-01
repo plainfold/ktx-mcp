@@ -29,7 +29,7 @@ async def test_search_trains_reads_store(store: InMemoryTimetableStore):
         [
             TrainDeparture(
                 dep_code="NAT010000",
-                arr_code="NAT010058",
+                arr_code="NAT014445",
                 travel_date="20260701",
                 dep_time="0500",
                 arr_time="0730",
@@ -57,8 +57,8 @@ async def test_compare_ktx_srt(store: InMemoryTimetableStore):
     await store.upsert_many(
         [
             TrainDeparture(
-                dep_code="NAT014445",
-                arr_code="NAT010058",
+                dep_code="NATH30000",
+                arr_code="NAT014445",
                 travel_date="20260701",
                 dep_time="0600",
                 arr_time="0830",
@@ -67,7 +67,7 @@ async def test_compare_ktx_srt(store: InMemoryTimetableStore):
             ),
             TrainDeparture(
                 dep_code="NAT010000",
-                arr_code="NAT010058",
+                arr_code="NAT014445",
                 travel_date="20260701",
                 dep_time="0700",
                 arr_time="0930",

@@ -10,8 +10,8 @@ from ktx_mcp.store.timetable import TimetableStore
 KST = ZoneInfo("Asia/Seoul")
 
 DEFAULT_SYNC_ROUTES: list[tuple[str, str, str]] = [
-    ("NAT010000", "NAT010058", "Seoul-Busan"),
-    ("NAT014445", "NAT010058", "Suseo-Busan"),
+    ("NAT010000", "NAT014445", "Seoul-Busan"),
+    ("NATH30000", "NAT014445", "Suseo-Busan"),
     ("NAT010000", "NAT013271", "Seoul-Dongdaegu"),
     ("NAT011668", "NAT013271", "Daejeon-Dongdaegu"),
 ]

@@ -1,46 +1,53 @@
 #!/usr/bin/env python3
-"""Smoke test: one TAGO train API call via data.go.kr key."""
+"""Smoke test: TAGO TrainInfo API via apis.data.go.kr/1613000."""
 
 from __future__ import annotations
 
-import os
 import sys
-from urllib.parse import urlencode
+from datetime import datetime, timedelta
+from pathlib import Path
+from zoneinfo import ZoneInfo
 
-import httpx
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
 
-# TAGO train schedule endpoint (verify against latest TAGO docs)
-TAGO_TRAIN_URL = "http://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo"
+from ktx_mcp.adapters.tago_client import (  # noqa: E402
+    OP_TRAIN_TIMETABLE,
+    TagoApiError,
+    load_service_key,
+    tago_get,
+)
+
+KST = ZoneInfo("Asia/Seoul")
 
 
 def main() -> int:
-    key = os.environ.get("DATA_GO_KR_SERVICE_KEY", "").strip()
-    if not key:
-        print("Set DATA_GO_KR_SERVICE_KEY (data.go.kr TAGO train API 15098552)", file=sys.stderr)
+    try:
+        service_key = load_service_key()
+    except TagoApiError as exc:
+        print(exc, file=sys.stderr)
         return 1
 
-    params = {
-        "serviceKey": key,
-        "depPlaceId": "NAT010000",
-        "arrPlaceId": "NAT014445",
-        "depPlandTime": "20260701",
-        "numOfRows": "3",
-        "pageNo": "1",
-        "_type": "json",
-    }
-    url = f"{TAGO_TRAIN_URL}?{urlencode(params)}"
-
-    print(f"GET {TAGO_TRAIN_URL} ...")
+    travel_date = (datetime.now(KST).date() + timedelta(days=1)).strftime("%Y%m%d")
+    print("GET GetStrtpntAlocFndTrainInfo (Seoul -> Busan) ...")
     try:
-        with httpx.Client(timeout=30.0) as client:
-            resp = client.get(url)
-            resp.raise_for_status()
-            print(f"status={resp.status_code} bytes={len(resp.content)}")
-            print(resp.text[:500])
-    except httpx.HTTPError as exc:
-        print(f"HTTP error: {exc}", file=sys.stderr)
+        payload = tago_get(
+            OP_TRAIN_TIMETABLE,
+            service_key=service_key,
+            depPlaceId="NAT010000",
+            arrPlaceId="NAT014445",
+            depPlandTime=travel_date,
+            numOfRows="3",
+            pageNo="1",
+        )
+    except TagoApiError as exc:
+        print(exc, file=sys.stderr)
+        if exc.result_code == "99":
+            print("활용신청(15098552) 승인 및 인증키 확인 필요", file=sys.stderr)
         return 2
 
+    items = payload.get("response", {}).get("body", {}).get("items", {})
+    print("ok", items)
     return 0
 
 

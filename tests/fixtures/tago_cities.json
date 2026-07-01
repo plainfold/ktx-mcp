@@ -1,0 +1,14 @@
+{
+  "response": {
+    "header": { "resultCode": "00", "resultMsg": "OK" },
+    "body": {
+      "items": {
+        "item": [
+          { "citycode": "11", "cityname": "서울" },
+          { "citycode": "26", "cityname": "부산" }
+        ]
+      },
+      "totalCount": 2
+    }
+  }
+}

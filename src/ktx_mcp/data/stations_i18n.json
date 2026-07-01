@@ -1,67 +1,552 @@
 [
   {
-    "canonical": "서울",
-    "code": "NAT010000",
+    "canonical": "강릉",
+    "code": "NAT601936",
     "aliases": {
-      "en": ["Seoul", "Seoul Station"],
-      "ja": ["ソウル", "ソウル駅"],
-      "zh": ["首尔", "首尔站"]
-    },
-    "note": "Separate from Suseo (SRT)"
-  },
-  {
-    "canonical": "수서",
-    "code": "NAT014445",
-    "aliases": {
-      "en": ["Suseo", "Suseo Station"],
-      "ja": ["水西", "水西駅"],
-      "zh": ["水西", "水西站"]
-    },
-    "note": "SRT and KTX"
-  },
-  {
-    "canonical": "부산",
-    "code": "NAT010058",
-    "aliases": {
-      "en": ["Busan", "Busan Station"],
-      "ja": ["釜山", "釜山駅"],
-      "zh": ["釜山", "釜山站"]
+      "en": [
+        "Gangneung",
+        "Gangneung Station"
+      ],
+      "ja": [
+        "江陵",
+        "江陵駅"
+      ],
+      "zh": [
+        "江陵",
+        "江陵站"
+      ]
     }
   },
   {
-    "canonical": "동대구",
-    "code": "NAT013271",
+    "canonical": "광명",
+    "code": "NATH10219",
     "aliases": {
-      "en": ["Dongdaegu", "Dongdaegu Station"],
-      "ja": ["東大邱", "東大邱駅"],
-      "zh": ["东大邱", "东大邱站"]
-    }
-  },
-  {
-    "canonical": "대전",
-    "code": "NAT011668",
-    "aliases": {
-      "en": ["Daejeon", "Daejeon Station"],
-      "ja": ["大田", "大田駅"],
-      "zh": ["大田", "大田站"]
+      "en": [
+        "Gwangmyeong",
+        "Gwangmyeong Station"
+      ],
+      "ja": [
+        "光明",
+        "光明駅"
+      ],
+      "zh": [
+        "光明",
+        "光明站"
+      ]
     }
   },
   {
     "canonical": "광주송정",
     "code": "NAT031857",
     "aliases": {
-      "en": ["Gwangju Songjeong"],
-      "ja": ["光州松汀"],
-      "zh": ["光州松汀"]
+      "en": [
+        "Gwangju Songjeong",
+        "Gwangju-Songjeong Station"
+      ],
+      "ja": [
+        "光州松汀",
+        "光州松汀駅"
+      ],
+      "zh": [
+        "光州松汀",
+        "光州松汀站"
+      ]
+    }
+  },
+  {
+    "canonical": "김천구미",
+    "code": "NATH12383",
+    "aliases": {
+      "en": [
+        "Gimcheon Gumi",
+        "Gimcheon-Gumi Station"
+      ],
+      "ja": [
+        "金泉龟尾",
+        "金泉龟尾駅"
+      ],
+      "zh": [
+        "金泉龟尾",
+        "金泉龟尾站"
+      ]
+    }
+  },
+  {
+    "canonical": "나주",
+    "code": "NAT031998",
+    "aliases": {
+      "en": [
+        "Naju",
+        "Naju Station"
+      ],
+      "ja": [
+        "羅州",
+        "羅州駅"
+      ],
+      "zh": [
+        "罗州",
+        "罗州站"
+      ]
+    }
+  },
+  {
+    "canonical": "대전",
+    "code": "NAT011668",
+    "aliases": {
+      "en": [
+        "Daejeon",
+        "Daejeon Station"
+      ],
+      "ja": [
+        "大田",
+        "大田駅"
+      ],
+      "zh": [
+        "大田",
+        "大田站"
+      ]
+    }
+  },
+  {
+    "canonical": "동대구",
+    "code": "NAT013271",
+    "aliases": {
+      "en": [
+        "Dongdaegu",
+        "Dongdaegu Station"
+      ],
+      "ja": [
+        "東大邱",
+        "東大邱駅"
+      ],
+      "zh": [
+        "东大邱",
+        "东大邱站"
+      ]
+    }
+  },
+  {
+    "canonical": "마산",
+    "code": "NAT880345",
+    "aliases": {
+      "en": [
+        "Masan",
+        "Masan Station"
+      ],
+      "ja": [
+        "馬山",
+        "馬山駅"
+      ],
+      "zh": [
+        "马山",
+        "马山站"
+      ]
+    }
+  },
+  {
+    "canonical": "목포",
+    "code": "NAT032563",
+    "aliases": {
+      "en": [
+        "Mokpo",
+        "Mokpo Station"
+      ],
+      "ja": [
+        "木浦",
+        "木浦駅"
+      ],
+      "zh": [
+        "木浦",
+        "木浦站"
+      ]
+    }
+  },
+  {
+    "canonical": "밀양",
+    "code": "NAT013841",
+    "aliases": {
+      "en": [
+        "Miryang",
+        "Miryang Station"
+      ],
+      "ja": [
+        "密陽",
+        "密陽駅"
+      ],
+      "zh": [
+        "密阳",
+        "密阳站"
+      ]
+    }
+  },
+  {
+    "canonical": "부산",
+    "code": "NAT014445",
+    "aliases": {
+      "en": [
+        "Busan",
+        "Busan Station"
+      ],
+      "ja": [
+        "釜山",
+        "釜山駅"
+      ],
+      "zh": [
+        "釜山",
+        "釜山站"
+      ]
+    }
+  },
+  {
+    "canonical": "서대전",
+    "code": "NAT030057",
+    "aliases": {
+      "en": [
+        "Seodaejeon",
+        "West Daejeon Station"
+      ],
+      "ja": [
+        "西大田",
+        "西大田駅"
+      ],
+      "zh": [
+        "西大田",
+        "西大田站"
+      ]
+    }
+  },
+  {
+    "canonical": "서울",
+    "code": "NAT010000",
+    "aliases": {
+      "en": [
+        "Seoul",
+        "Seoul Station"
+      ],
+      "ja": [
+        "ソウル",
+        "ソウル駅"
+      ],
+      "zh": [
+        "首尔",
+        "首尔站"
+      ]
+    },
+    "note": "KTX main; separate from Suseo (SRT)"
+  },
+  {
+    "canonical": "수서",
+    "code": "NATH30000",
+    "aliases": {
+      "en": [
+        "Suseo",
+        "Suseo Station"
+      ],
+      "ja": [
+        "水西",
+        "水西駅"
+      ],
+      "zh": [
+        "水西",
+        "水西站"
+      ]
+    },
+    "note": "SRT and KTX"
+  },
+  {
+    "canonical": "순천",
+    "code": "NAT041595",
+    "aliases": {
+      "en": [
+        "Suncheon",
+        "Suncheon Station"
+      ],
+      "ja": [
+        "順天",
+        "順天駅"
+      ],
+      "zh": [
+        "顺天",
+        "顺天站"
+      ]
+    }
+  },
+  {
+    "canonical": "신경주",
+    "code": "NATH13421",
+    "aliases": {
+      "en": [
+        "Singyeongju",
+        "Shin Gyeongju Station",
+        "Gyeongju"
+      ],
+      "ja": [
+        "新慶州",
+        "新慶州駅"
+      ],
+      "zh": [
+        "新庆州",
+        "新庆州站"
+      ],
+      "ko": [
+        "경주"
+      ]
+    },
+    "tago_name": "경주"
+  },
+  {
+    "canonical": "여수EXPO",
+    "code": "NAT041993",
+    "aliases": {
+      "en": [
+        "Yeosu Expo",
+        "Yeosu Station"
+      ],
+      "ja": [
+        "麗水EXPO",
+        "麗水駅"
+      ],
+      "zh": [
+        "丽水EXPO",
+        "丽水站"
+      ]
+    }
+  },
+  {
+    "canonical": "영등포",
+    "code": "NAT010091",
+    "aliases": {
+      "en": [
+        "Yeongdeungpo",
+        "Yeongdeungpo Station"
+      ],
+      "ja": [
+        "永登浦",
+        "永登浦駅"
+      ],
+      "zh": [
+        "永登浦",
+        "永登浦站"
+      ]
     }
   },
   {
     "canonical": "오송",
-    "code": "NAT050366",
+    "code": "NAT050044",
     "aliases": {
-      "en": ["Osong"],
-      "ja": ["五松"],
-      "zh": ["五松"]
+      "en": [
+        "Osong"
+      ],
+      "ja": [
+        "五松"
+      ],
+      "zh": [
+        "五松"
+      ]
+    }
+  },
+  {
+    "canonical": "용산",
+    "code": "NAT010032",
+    "aliases": {
+      "en": [
+        "Yongsan",
+        "Yongsan Station"
+      ],
+      "ja": [
+        "龍山",
+        "龍山駅"
+      ],
+      "zh": [
+        "龙山",
+        "龙山站"
+      ]
+    }
+  },
+  {
+    "canonical": "울산(통도사)",
+    "code": "NATH13717",
+    "aliases": {
+      "en": [
+        "Ulsan Tongdosa",
+        "Ulsan Station"
+      ],
+      "ja": [
+        "蔚山通度寺",
+        "蔚山駅"
+      ],
+      "zh": [
+        "蔚山通度寺",
+        "蔚山站"
+      ],
+      "ko": [
+        "울산",
+        "통도사"
+      ]
+    },
+    "tago_name": "울산"
+  },
+  {
+    "canonical": "익산",
+    "code": "NAT030879",
+    "aliases": {
+      "en": [
+        "Iksan",
+        "Iksan Station"
+      ],
+      "ja": [
+        "益山",
+        "益山駅"
+      ],
+      "zh": [
+        "益山",
+        "益山站"
+      ]
+    }
+  },
+  {
+    "canonical": "전주",
+    "code": "NAT040257",
+    "aliases": {
+      "en": [
+        "Jeonju",
+        "Jeonju Station"
+      ],
+      "ja": [
+        "全州",
+        "全州駅"
+      ],
+      "zh": [
+        "全州",
+        "全州站"
+      ]
+    }
+  },
+  {
+    "canonical": "정읍",
+    "code": "NAT031314",
+    "aliases": {
+      "en": [
+        "Jeongeup",
+        "Jeongeup Station"
+      ],
+      "ja": [
+        "井邑",
+        "井邑駅"
+      ],
+      "zh": [
+        "井邑",
+        "井邑站"
+      ]
+    }
+  },
+  {
+    "canonical": "진주",
+    "code": "NAT881014",
+    "aliases": {
+      "en": [
+        "Jinju",
+        "Jinju Station"
+      ],
+      "ja": [
+        "晋州",
+        "晋州駅"
+      ],
+      "zh": [
+        "晋州",
+        "晋州站"
+      ]
+    }
+  },
+  {
+    "canonical": "창원중앙",
+    "code": "NAT880281",
+    "aliases": {
+      "en": [
+        "Changwon Jungang",
+        "Changwon Central Station"
+      ],
+      "ja": [
+        "昌原中央",
+        "昌原中央駅"
+      ],
+      "zh": [
+        "昌原中央",
+        "昌原中央站"
+      ]
+    }
+  },
+  {
+    "canonical": "천안아산",
+    "code": "NATH10960",
+    "aliases": {
+      "en": [
+        "Cheonan Asan",
+        "Asan Cheonan Station"
+      ],
+      "ja": [
+        "天安牙山",
+        "天安牙山駅"
+      ],
+      "zh": [
+        "天安牙山",
+        "天安牙山站"
+      ]
+    }
+  },
+  {
+    "canonical": "평택지제",
+    "code": "NAT010754",
+    "aliases": {
+      "en": [
+        "Pyeongtaek Jije",
+        "Jije Station"
+      ],
+      "ja": [
+        "平沢芝制",
+        "芝制駅"
+      ],
+      "zh": [
+        "平泽芝制",
+        "芝制站"
+      ]
+    },
+    "tago_name": "평택"
+  },
+  {
+    "canonical": "포항",
+    "code": "NAT8B0351",
+    "aliases": {
+      "en": [
+        "Pohang",
+        "Pohang Station"
+      ],
+      "ja": [
+        "浦項",
+        "浦項駅"
+      ],
+      "zh": [
+        "浦项",
+        "浦项站"
+      ]
+    }
+  },
+  {
+    "canonical": "행신",
+    "code": "NAT110147",
+    "aliases": {
+      "en": [
+        "Haengsin",
+        "Haengsin Station"
+      ],
+      "ja": [
+        "行신",
+        "行신駅"
+      ],
+      "zh": [
+        "行신",
+        "行신站"
+      ]
     }
   }
 ]

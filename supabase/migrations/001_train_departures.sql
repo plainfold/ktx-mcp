@@ -37,8 +37,8 @@ CREATE TABLE IF NOT EXISTS sync_routes (
 
 -- Seed top routes (expand to 30 in app config)
 INSERT INTO sync_routes (dep_code, arr_code, priority, label) VALUES
-  ('NAT010000', 'NAT010058', 10, 'Seoul-Busan'),
-  ('NAT014445', 'NAT010058', 10, 'Suseo-Busan'),
+  ('NAT010000', 'NAT014445', 10, 'Seoul-Busan'),
+  ('NATH30000', 'NAT014445', 10, 'Suseo-Busan'),
   ('NAT010000', 'NAT013271', 20, 'Seoul-Dongdaegu'),
   ('NAT011668', 'NAT013271', 30, 'Daejeon-Dongdaegu')
 ON CONFLICT DO NOTHING;

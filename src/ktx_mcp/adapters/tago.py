@@ -1,23 +1,16 @@
 from __future__ import annotations
 
 from typing import Any
-from urllib.parse import urlencode
 
-import httpx
-
+from ktx_mcp.adapters.tago_client import OP_TRAIN_TIMETABLE, tago_get
 from ktx_mcp.models.train import TrainDeparture
-
-TAGO_TRAIN_URL = (
-    "http://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo"
-)
 
 
 class TagoGateway:
     """TAGO train timetable client (sync worker only — not on MCP request path)."""
 
-    def __init__(self, service_key: str, *, client: httpx.AsyncClient | None = None) -> None:
+    def __init__(self, service_key: str) -> None:
         self._service_key = service_key
-        self._client = client
         self.calls_today = 0
 
     async def fetch_route(
@@ -28,26 +21,18 @@ class TagoGateway:
         *,
         num_rows: int = 100,
     ) -> list[TrainDeparture]:
-        params = {
-            "serviceKey": self._service_key,
-            "depPlaceId": dep_code,
-            "arrPlaceId": arr_code,
-            "depPlandTime": travel_date,
-            "numOfRows": str(num_rows),
-            "pageNo": "1",
-            "_type": "json",
-        }
-        url = f"{TAGO_TRAIN_URL}?{urlencode(params)}"
-
-        if self._client is None:
-            async with httpx.AsyncClient(timeout=30.0) as client:
-                response = await client.get(url)
-        else:
-            response = await self._client.get(url)
-
-        response.raise_for_status()
+        payload = tago_get(
+            OP_TRAIN_TIMETABLE,
+            service_key=self._service_key,
+            client=None,
+            depPlaceId=dep_code,
+            arrPlaceId=arr_code,
+            depPlandTime=travel_date,
+            numOfRows=str(num_rows),
+            pageNo="1",
+        )
         self.calls_today += 1
-        return _parse_train_items(response.json(), dep_code, arr_code, travel_date)
+        return _parse_train_items(payload, dep_code, arr_code, travel_date)
 
 
 def _parse_train_items(

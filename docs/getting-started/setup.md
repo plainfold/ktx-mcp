@@ -79,7 +79,22 @@ KTX_MCP_TRANSPORT=stdio
 python scripts/smoke_tago.py
 ```
 
-### 5. Run locally
+### 5. Build station list (official TAGO API)
+
+`src/ktx_mcp/data/station_aliases.json` — **편집하는 파일**
+
+| 필드 | 출처 |
+|------|------|
+| 키 (예: `신경주`) | 사용자에게 보이는 **표시 역명** |
+| `tago_name` | TAGO `nodename`이 다를 때만 (예: `신경주` → `경주`) |
+| `en` / `ja` / `zh` / `ko` | 검색용 별칭 (API 없음) |
+| `note` | MCP 응답 메모 |
+
+`python scripts/build_stations.py` → TAGO에서 `nodeid` 조회 후 `stations_i18n.json` 생성.
+
+- API: `GetCtyCodeList` → `GetCtyAcctoTrainSttnList` (`https://apis.data.go.kr/1613000/TrainInfo`)
+
+### 6. Run locally
 
 ```bash
 ktx-mcp

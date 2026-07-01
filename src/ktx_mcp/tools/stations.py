@@ -17,6 +17,8 @@ def _load_station_catalog() -> list[dict[str, Any]]:
 
 def _collect_names(entry: dict[str, Any]) -> list[str]:
     names = [entry["canonical"]]
+    if tago := entry.get("tago_name"):
+        names.append(str(tago))
     aliases = entry.get("aliases") or {}
     for values in aliases.values():
         names.extend(values)
